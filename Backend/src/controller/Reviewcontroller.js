@@ -1,7 +1,5 @@
 import express from 'express'
-import { Contact } from '../models/Contactmodel.js'
-
-
+import { Review } from '../models/Reviewmodel.js'
 
 export const Registercontact = async (req, res) => {
     try {
@@ -13,13 +11,13 @@ export const Registercontact = async (req, res) => {
         if (exist) {
             return res.status(400).json({ message: "Email already exist" })
         }
-        const addContact = new Contact({
+        const addReview = new Review({
             name,
             email,
             review
         });
-        await addContact.save()
-        return res.status(200).json({ user: addContact });
+        await addReview.save()
+        return res.status(200).json({ user: addReview });
     }
     catch (error) {
         console.log(error)
@@ -27,10 +25,10 @@ export const Registercontact = async (req, res) => {
 }
 
 
-export const getContact = async (req, res) => {
+export const getReview = async (req, res) => {
     try {
-        const contact = await Contact.find()
-        res.status(200).json(contact)
+        const review = await Review.find()
+        res.status(200).json(review)
     }
     catch (error) {
         res.status(500).json({ message: "Error" })

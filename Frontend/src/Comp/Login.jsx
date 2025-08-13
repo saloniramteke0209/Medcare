@@ -7,10 +7,6 @@ const Login = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [role, setRole] = useState('');
-    // const [appoinmentDate, setAppointmentDate] = useState('');
-    // const [department, setDepartment] = useState('');
-    // const [schedule, setSchedule] = useState('');
-    // const [isBusy, setisBusy] = useState('');
     const navigate = useNavigate() //redirect based on role 
 
     const handleSubmit = async (e) => {
@@ -21,11 +17,7 @@ const Login = () => {
             const res = await axios.post('http://localhost:3000/api/login', {
                 name,
                 email,
-                role,
-                // appoinmentDate: role === 'patient' ? appoinmentDate : undefined,
-                // department: role === 'doctor' ? department : undefined,
-                // schedule: role === 'doctor' ? schedule : undefined,
-                // isBusy: role === 'doctor' ? isBusy : undefined
+                role
             }, {
                 headers: {
                     'Content-Type': 'application/json'
@@ -83,43 +75,6 @@ const Login = () => {
                         <option value="doctor">Doctor</option>
                         <option value="patient">Patient</option>
                     </select>
-                    {/* {role === "patient" && (
-                        <label className='block text-gray-700 font-medium'>
-                            Appointment Date:
-                            <input
-                                type='date'
-                                className='w-full p-2 mt-1 border border-gray-300 rounded focus:outline-non focus:ring-teal-400'
-                                value={appoinmentDate}
-                                onChange={(e) => setAppointmentDate(e.target.value)}
-                                required
-                            />
-                        </label>
-                    )}
-                    {role === "doctor" && (
-                        <>
-                            <label className='block text-gray-700 font-medium'>Department</label>
-                            <input
-                                type='text'
-                                name='department'
-                                placeholder='Department'
-                                className='w-full p-2 mt-1 border border-gray-300 rounded focus:outline-non focus:ring-teal-400'
-                                value={department} onChange={(e) => setDepartment(e.target.value)}
-                            />
-                            <label className='block text-gray-700 font-medium'>Schedule</label>
-                            <input
-                                type='text'
-                                name='schedule'
-                                placeholder='Schedule'
-                                className='w-full p-2 mt-1 border border-gray-300 rounded focus:outline-non focus:ring-teal-400'
-                                value={schedule} onChange={(e) => setSchedule(e.target.value)}></input>
-                            <label className='block text-gray-700 font-medium'>isBusy</label>
-                            <select className='w-full p-2 mt-1 border border-gray-300 rounded focus:outline-non focus:ring-teal-400' value={isBusy} onChange={(e) => setisBusy(e.target.value)}>
-                                <option value={""}>Select Time</option>
-                                <option value={"true"}>Busy</option>
-                                <option value={"false"}>Available</option>
-                            </select>
-                        </>
-                    )} */}
                     <button className="w-full bg-teal-400 text-white font-semibold py-2 rounded hover:bg-teal-500 transition duration-300">Login</button>
                 </form>
             </div>

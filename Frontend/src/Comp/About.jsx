@@ -1,35 +1,56 @@
-// src/pages/About.jsx
-import React from "react";
+import React, { useState } from "react";
+import { FiHeart } from "react-icons/fi";
+import { LuBrain } from "react-icons/lu";
+import { FaBone, FaHandsHoldingChild } from "react-icons/fa6";
 
-const team = [
-    { name: "Dr. Meera Shah", role: "Cardiologist" },
-    { name: "Dr. Aryan Deshmukh", role: "Neurologist" },
-    { name: "Dr. Pooja Sethi", role: "Pediatrician" },
+const specialties = [
+    {
+        icon: <FiHeart className="w-8 h-8 text-blue-600" />,
+        title: "Cardiology",
+        description: "Diagnosis, treatment, and prevention of heart diseases to improve your heart health.",
+    },
+    {
+        icon: <LuBrain className="w-8 h-8 text-blue-600" />,
+        title: "Neurology",
+        description: "Comprehensive care for brain, spinal cord, and nerve disorders.",
+    },
+    {
+        icon: <FaBone className="w-8 h-8 text-blue-600" />,
+        title: "Orthopedics",
+        description: "Treatment for bones, joints, and muscles to restore mobility and comfort.",
+    },
+    {
+        icon: <FaHandsHoldingChild className="w-8 h-8 text-blue-600" />,
+        title: "Pediatrics",
+        description: "Specialized healthcare for infants, children, and adolescents.",
+    },
 ];
 
 const About = () => {
-    return (
-        <div className="bg-white text-gray-800 p-6">
-            <section className="max-w-4xl mx-auto text-center mb-12">
-                <h1 className="text-4xl font-bold text-blue-900 mb-4">About MedicoCare</h1>
-                <p className="text-gray-700">
-                    MedicoCare is a multi-specialty hospital dedicated to delivering exceptional healthcare services.
-                    Our mission is to combine cutting-edge technology with compassionate care to improve patient lives.
-                </p>
-            </section>
 
-            <section className="bg-gray-100 py-12 px-4">
-                <h2 className="text-2xl font-semibold text-center text-blue-900 mb-8">Meet the Team</h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-                    {team.map((member, index) => (
-                        <div key={index} className="bg-white p-6 rounded shadow text-center">
-                            <div className="w-24 h-24 mx-auto bg-blue-100 rounded-full mb-4"></div>
-                            <h3 className="text-lg font-semibold text-blue-800">{member.name}</h3>
-                            <p className="text-sm text-gray-600">{member.role}</p>
+    const [activeIndex, setActiveIndex] = useState(null);
+    return (
+        <div className="max-w-7xl mx-auto px-6 py-12">
+            <div className="text-center mb-10">
+                <h2 className="text-4xl font-bold text-gray-800">Our Specialties</h2>
+                <p className="text-gray-600 mt-2">Expert care across multiple medical fields</p>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+                {specialties.map(({ icon, title, description }, i) => {
+                    const isActive = activeIndex === i;
+                    return (
+                        <div key={i} onClick={() => setActiveIndex(i)} className={`rounded-xl shadow-lg p-6 text-center cursor-pointer transition-colors duration-300 
+                    ${isActive
+                                ? "bg-blue-600 text-white"
+                                : "bg-gray-100 text-gray-800 hover:bg-blue-400 hover:text-gray-200"}`}>
+                            <div className="flex justify-center mb-2">{icon}</div>
+                            <h3 className="text-xl font-bold mb-2">{title}</h3>
+                            <p className="text-gray-600">{description}</p>
                         </div>
-                    ))}
-                </div>
-            </section>
+                    );
+                })};
+            </div>
         </div>
     );
 };

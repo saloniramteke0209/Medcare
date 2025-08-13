@@ -1,11 +1,12 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import Patilayout from '../Layout/Patilayout.jsx';
+import Patihome from '../Home/Patihome.jsx';
+
 
 const Patient = () => {
     return (
         <Routes>
-            <Route path="/" element={<Patilayout />} />
+            <Route path="/" element={<Patihome />} />
         </Routes>
     );
 };

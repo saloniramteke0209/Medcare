@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const contactSchema = new mongoose.Schema({
+const reviewSchema = new mongoose.Schema({
     name: {
         type: String,
         required: true
@@ -20,4 +20,4 @@ const contactSchema = new mongoose.Schema({
     },
 }, { timestamps: true })
 
-export const Contact = mongoose.model('Contact', contactSchema)
+export const Review = mongoose.model('Review', reviewSchema)

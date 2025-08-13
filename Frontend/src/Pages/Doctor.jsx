@@ -1,13 +1,13 @@
 import React from 'react';
-// import MainLayout from '../Layout';
 import { Routes, Route } from 'react-router-dom';
-import Doclayout from '../Layout/Doclayout.jsx';
+import Dochome from '../Home/Dochome.jsx';
+
 
 
 const Doctor = () => {
     return (
         <Routes>
-            <Route path="/" element={< Doclayout />} />
+            <Route path="*" element={< Dochome />} />
         </Routes>
     );
 };

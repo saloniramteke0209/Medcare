@@ -1,20 +1,83 @@
 import React from 'react'
+import { FaCog, FaSearch, FaSignOutAlt, FaTachometerAlt, FaUserMd } from 'react-icons/fa'
+import { FaBell, FaCalendarCheck, FaUserInjured } from 'react-icons/fa6'
 import { Link } from 'react-router-dom'
 
 const Adminside = () => {
     return (
-        <div>
-            <div className="w-64 bg-blue-900 text-white min-h-screen p-4">
-                <h1 className="text-2xl font-bold mb-6">Hospital Admin</h1>
-                <nav className="space-y-4">
-                    <Link to="/admindashboard" className="block hover:bg-blue-700 p-2 rounded">Dashboard</Link>
-                    <Link to="/getdoctor" className="block hover:bg-blue-700 p-2 rounded">Doctors</Link>
-                    <Link to="/getappointment" className="block hover:bg-blue-700 p-2 rounded">Patients</Link>
-                    <Link to="/appointment" className="block hover:bg-blue-700 p-2 rounded">Appointments</Link>
-                    <button className="mt-6 bg-red-600 hover:bg-red-700 w-full py-2 rounded">Logout</button>
-                </nav>
+        <>
+            <div>
+                <h1 className="text-2xl text-[#FAF3E0] font-bold mb-10 tracking-wide">MedTrack</h1>
+
+                <ul className="space-y-3">
+                    {/* Dashboard */}
+                    <li>
+                        <Link
+                            to="/admindashboard"
+                            className={`flex items-center space-x-3 p-3 rounded-lg transition-all duration-300 
+                                    ${location.pathname === "/admindashboard"
+                                    ? "bg-[#FF6F61] text-white border-l-4 border-[#FFD700] shadow-md"
+                                    : "text-[#FAF3E0] hover:bg-[#FF6F61] hover:text-white"}`}
+                        >
+                            <FaTachometerAlt /> <span>Dashboard</span>
+                        </Link>
+                    </li>
+
+                    {/* Doctors */}
+                    <li>
+                        <Link
+                            to="/getdoctor"
+                            className={`flex items-center space-x-3 p-3 rounded-lg transition-all duration-300 
+                                    ${location.pathname === "/getdoctor"
+                                    ? "bg-[#FF6F61] text-white border-l-4 border-[#FFD700] shadow-md"
+                                    : "text-[#FAF3E0] hover:bg-[#FF6F61] hover:text-white"}`}
+                        >
+                            <FaUserMd /> <span>Doctors</span>
+                        </Link>
+                    </li>
+
+                    {/* Patients */}
+                    <li>
+                        <Link
+                            to="/getappointment"
+                            className={`flex items-center space-x-3 p-3 rounded-lg transition-all duration-300 
+                                    ${location.pathname === "/getappointment"
+                                    ? "bg-[#FF6F61] text-white border-l-4 border-[#FFD700] shadow-md"
+                                    : "text-[#FAF3E0] hover:bg-[#FF6F61] hover:text-white"}`}
+                        >
+                            <FaUserInjured /> <span>Patients</span>
+                        </Link>
+                    </li>
+
+                    {/* Appointments */}
+                    <li>
+                        <Link
+                            to="/appointment"
+                            className={`flex items-center space-x-3 p-3 rounded-lg transition-all duration-300 
+                                    ${location.pathname === "/appointment"
+                                    ? "bg-[#FF6F61] text-white border-l-4 border-[#FFD700] shadow-md"
+                                    : "text-[#FAF3E0] hover:bg-[#FF6F61] hover:text-white"}`}
+                        >
+                            <FaCalendarCheck /> <span>Appointments</span>
+                        </Link>
+                    </li>
+
+
+
+                    {/* Logout */}
+                    <li>
+                        <Link
+                            to="/"
+                            className="flex items-center space-x-3 p-3 rounded-lg text-[#FAF3E0] hover:bg-red-500 hover:text-white transition-all duration-300"
+                        >
+                            <FaSignOutAlt /> <span>Logout</span>
+                        </Link>
+                    </li>
+                </ul>
             </div>
-        </div>
+
+        </>
+
     )
 }
 

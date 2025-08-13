@@ -1,12 +1,16 @@
 import React from 'react';
-import { Route, Routes } from 'react-router-dom';
-import Admlayout from '../Layout/Admlayout.jsx';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+// import Adminside from '../Sidebar/Adminside.jsx';
+import Admhome from '../Home/Admhome.jsx';
+
 
 const Admin = () => {
     return (
+
         <Routes>
-            <Route path="/" element={<Admlayout />} />
+            <Route path="/" element={<Admhome />} />
         </Routes>
+
     );
 };
 

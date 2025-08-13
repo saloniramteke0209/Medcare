@@ -2,9 +2,10 @@ import axios from 'axios'
 import React from 'react'
 import { useEffect } from 'react'
 import { useState } from 'react'
-import Adminside from '../Sidebar/Adminside.jsx'
 
-const Getappointment = () => {
+import Doctorside from '../Sidebar/Doctorside.jsx'
+
+const Patientappointment = () => {
     const [appointment, setAppointment] = useState([])
     useEffect(() => {
         const fetchAppoinment = async () => {
@@ -20,10 +21,9 @@ const Getappointment = () => {
     }, [])
     return (
         <div>
-
             <div className='flex min-h-screen bg-gray-100'>
                 <div className='w-64 bg-white shadow-lg'>
-                    <Adminside />
+                    <Doctorside />
                 </div>
                 <div className='mb-8'>
                     <h3 className='text-xl font-semibold mb-2'>All Appoinment</h3>
@@ -44,4 +44,4 @@ const Getappointment = () => {
     )
 }
 
-export default Getappointment
+export default Patientappointment

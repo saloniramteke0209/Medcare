@@ -7,7 +7,8 @@ import Adminrouter from './router/Adminrouter.js';
 import Doctorrouter from './router/Docrouter.js';
 import Patientrouter from './router/Patientrouter.js';
 import Approuter from './router/Approuter.js';
-import Contactrouter from './router/Contactrouter.js';
+import Reviewrouter from './router/Reviewrouter.js';
+
 
 
 
@@ -22,7 +23,7 @@ app.use('/api/admin', Adminrouter)
 app.use('/api/doctor', Doctorrouter)
 app.use('/api/patient', Patientrouter)
 app.use('/api/appointment', Approuter)
-app.use('/api/contact', Contactrouter)
+app.use('/api/contact', Reviewrouter)
 
 const PORT = process.env.PORT
 app.listen(PORT, () => {
