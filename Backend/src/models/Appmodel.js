@@ -37,6 +37,16 @@ const hopSchema = new mongoose.Schema({
         required: true,
         trim: true
     },
+    Age: {
+        type: String,
+        required: true,
+        trim: true
+    },
+    History: {
+        type: String,
+        required: true,
+        trim: true
+    },
     isLoggedIn: {
         type: Boolean,
         default: false,
