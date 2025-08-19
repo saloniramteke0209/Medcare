@@ -1,6 +1,7 @@
 import React from "react";
 import axios from 'axios';
 import { useState } from 'react'
+import Patientside from "../Sidebar/Patientside";
 
 const Appointment = () => {
     const [name, setName] = useState('');
@@ -10,13 +11,14 @@ const Appointment = () => {
     const [department, setDepartment] = useState('');
     const [age, setAge] = useState('');
     const [history, setHistory] = useState('');
+    const [gender, setGender] = useState('');
     const [date, setDate] = useState('');
     const [time, setTime] = useState('');
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.post('http://localhost:3000//api/apponiment/', {
+            await axios.post(' https://med-1-9k1u.onrender.com/api/appointment/', {
                 Name: name,
                 Number: number,
                 Record: record,
@@ -105,7 +107,7 @@ const Appointment = () => {
                     <div className="flex flex-col md:flex-row gap-4">
                         <div className="w-full">
                             <label className="block text-gray-800 font-medium text-sm mb-1">Gender</label>
-                            <select className="w-full px-4 py-2 border border-gray-300  rounded-md bg-white" value={reason} onChange={(e) => setReason(e.target.value)}>
+                            <select className="w-full px-4 py-2 border border-gray-300  rounded-md bg-white" value={gender} onChange={(e) => setGender(e.target.value)}>
                                 <option value={""}>Select Gender</option>
                                 <option value={"Male"}>Male</option>
                                 <option value={"Female"}>Female</option>
@@ -115,18 +117,13 @@ const Appointment = () => {
                     <div className="flex flex-col md:flex-row gap-4">
                         <div className="w-full">
                             <label className="block text-gray-800 font-medium text-sm mb-1">Reason for Visit</label>
-                            <select className="w-full px-4 py-2 border border-gray-300  rounded-md bg-white" value={reason} onChange={(e) => setReason(e.target.value)}>
-                                <option value={""}>Select Reason</option>
-                                <option value={"Routine Checkup"}>Routine Checkup</option>
-                                <option value={"Consultation"}>Consultation</option>
-                                <option value={"Follow-up"}>Follow-up</option>
-                                <option value={"Prescription Refill"}>Prescription Refill</option>
-                                <option value={"Lab Test"}>Lab Test</option>
-                                <option value={"Radiology"}>Radiology</option>
-                                <option value={"Vaccination"}>Vaccination</option>
-                                <option value={"Physiotherapy"}>Physiotherapy</option>
-                            </select>
-
+                            <input
+                                type="text"
+                                placeholder="Type your Reason"
+                                className="w-full p-2 mb-4 border border-gray-300  rounded-md  bg-gray-50 placeholder-gray-800"
+                                value={reason}
+                                onChange={(e) => setReason(e.target.value)}
+                            />
                         </div>
                         <div className="w-full">
                             <label className="block text-sm text-gray-800 font-medium mb-1">Department</label>

@@ -2,10 +2,11 @@ import axios from 'axios'
 import React from 'react'
 import { useEffect } from 'react'
 import { useState } from 'react'
-import Adminside from '../Sidebar/Adminside.jsx'
 import { GoPerson } from 'react-icons/go'
+import Patientside from '../Sidebar/Patientside'
 
-const Getappointment = () => {
+
+const Statusappointment = () => {
     const [appointment, setAppointment] = useState([])
     useEffect(() => {
         const fetchAppoinment = async () => {
@@ -20,15 +21,15 @@ const Getappointment = () => {
         fetchAppoinment();
     }, []);
     const getStatusBadge = (status) => {
-        switch (status?.toLowerCase()) {
-            case "pending":
-                return <span className="text-yellow-500">Pending</span>;
-            case "approved":
-                return <span className="text-green-500">Approved</span>;
-            case "rejected":
-                return <span className="text-red-500">Rejected</span>;
+        switch (status.toLowerCase()) {
+            case 'pending':
+                return 'bg-yellow-200 text-yellow-800';
+            case 'approved':
+                return 'bg-green-300 text-green-800';
+            case 'rejected':
+                return 'bg-red-300 text-red-800';
             default:
-                return <span className="text-gray-500">Unknown</span>;
+                return 'bg-gray-100 text-gray-800'
         }
     }
     return (
@@ -36,7 +37,7 @@ const Getappointment = () => {
 
             <div className='flex'>
 
-                <Adminside />
+                <Patientside />
 
                 <main className="flex-1 p-6 ml-16">
                     <h1 className="text-2xl font-bold mb-6 text-gray-700">All Appointments</h1>
@@ -50,14 +51,12 @@ const Getappointment = () => {
                                     key={app._id}
                                     className="p-4 border rounded-xl shadow-md hover:shadow-xl transition-shadow bg-white"
                                 >
-
                                     <div className="flex justify-center mb-4">
                                         <GoPerson
                                             className="w-15 h-15 rounded-full object-cover border-4 border-teal-600"
                                         />
                                     </div>
                                     <h2 className="text-lg font-semibold text-gray-800">{app.Name}</h2>
-                                    <p className="text-gray-600"><strong>Phone:</strong> {app.Number}</p>
                                     <p className="text-gray-600"><strong>Department:</strong> {app.Department}</p>
                                     <p className="text-gray-600"><strong>Date:</strong> {new Date(app.Date).toLocaleDateString()}</p>
                                     <span
@@ -75,4 +74,4 @@ const Getappointment = () => {
     )
 }
 
-export default Getappointment
+export default Statusappointment

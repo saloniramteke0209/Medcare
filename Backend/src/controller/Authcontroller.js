@@ -46,6 +46,7 @@ const Log = async (req, res) => {
             // return res.status(400).json({ user: user })
         }
         const token = jwt.sign({
+            name: user.name,
             email: user._email,
             role: user.role
         },
@@ -53,6 +54,7 @@ const Log = async (req, res) => {
         );
         return res.status(200).json({
             token,
+            name,
             role: user.role,
             user
         });

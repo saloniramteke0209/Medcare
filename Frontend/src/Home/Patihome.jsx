@@ -28,35 +28,34 @@ const specialties = [
 const Patihome = () => {
     const [activeIndex, setActiveIndex] = useState(null);
     return (
-        <div className="bg-[#023b35] min-h-screen text-white">
+        <div className=" min-h-screen text-white">
             <section className=" flex flex-row items-center  px-12 py-10">
 
                 <div className="w-1/2 pr-8">
-                    <h1 className="text-4xl font-bold  mb-4">Welcome , Doctor</h1>
-                    <p className="text-gray-200 mb-6">
-                        Review your appoinment, patient history, and manage schedules in one place
+                    <h1 className="text-4xl font-bold  mb-4 text-[#024c3b]">We Ensure The Well-Being of Your Health</h1>
+                    <p className="text-gray-700 mb-6">
+                        Experience peace of mind with our dedicated commitment to ensuring your optimal well-being
                     </p>
                     <div className="flex gap-4">
-                        <a href="/doctordashboard"
-                            className="px-6 py-3 bg-green-600 text-white rounded-lg shadow-lg hover:bg-green-700 transition">
+                        <a href="/patientdashboard"
+                            className="px-6 py-3 bg-[#2aa882] text-white rounded-lg shadow-lg hover:bg-[#218c6d] transition">
                             Dashboard
                         </a>
-                        <a href="/docontact"
-                            className="px-6 py-3 bg-green-600 text-white rounded-lg shadow-lg hover:bg-green-700 transition">
-                            Contact Us
+                        <a href="/appointment"
+                            className="px-6 py-3 bg-[#2aa882] text-white rounded-lg shadow-lg hover:bg-[#218c6d] transition">
+                            Book Appointment
                         </a>
                     </div>
                 </div>
                 <div className="w-1/2 flex justify-center ">
                     <img
                         src="https://plus.unsplash.com/premium_photo-1661473820951-99a3565f3fca?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                        alt="Surgery in progress"
                         className="w-full h-[80vh] object-cover rounded-lg shadow-lg"
                     />
                 </div>
             </section>
             <section className="px-12 pb-12">
-                <h2 className="text-center text-2xl font-bold text-green-200 mb-8">
+                <h2 className="text-4xl font-bold  mb-4 text-[#024c3b] text-center">
                     Meet Our Health Expert
                 </h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
@@ -65,10 +64,10 @@ const Patihome = () => {
                         return (
                             <div key={i} onClick={() => setActiveIndex(i)} className={`rounded-xl shadow-md overflow-hidden p-6 text-center cursor-pointer transition-colors duration-300 
                                     ${isActive
-                                    ? "bg-gray-100 text-[#b5c99a]"
-                                    : "bg-white text-[#b5c99a] hover:bg-[#064439] hover:text-[#b5c99a]"}`}>
-                                <div className="flex justify-center mb-2 text-[#b5c99a] text-3xl">{icon}</div>
-                                <h3 className="text-xl mb-2 text-[#7b9c52]">{name}</h3>
+                                    ? "bg-[#a8eccc] text-[#1e6f5c]"
+                                    : "bg-white text-gray-700 hover:bg-[#91e4c0] hover:text-[#1e6f5c]"}`}>
+                                <div className="flex justify-center mb-2  text-3xl">{icon}</div>
+                                <h3 className="text-xl mb-2 text-[#1e6f5c]">{name}</h3>
                                 <p className="text-gray-500 text-sm">{department}</p>
                                 <p className="text-gray-500 mt-2">{description}</p>
                             </div>

@@ -23,7 +23,7 @@ app.use('/api/admin', Adminrouter)
 app.use('/api/doctor', Doctorrouter)
 app.use('/api/patient', Patientrouter)
 app.use('/api/appointment', Approuter)
-app.use('/api/contact', Reviewrouter)
+app.use('/api/review', Reviewrouter)
 
 const PORT = process.env.PORT
 app.listen(PORT, () => {

@@ -26,6 +26,8 @@ import Patientdashboard from './Dashboard/Patientdashboard.jsx'
 import Admin from './Pages/Admin.jsx'
 import Doctor from './Pages/Doctor.jsx'
 import Patient from './Pages/Patient.jsx'
+import Statusappointment from './List/Statusappointment.jsx'
+import ViewDoctor from './Comp/Viewdoctor.jsx'
 // import Patientside from './Sidebar/Patientside.jsx'
 
 
@@ -63,6 +65,8 @@ function App() {
       <Route path='/patihome' element={<Patihome />} />
       <Route path='/patientdashboard' element={<Patientdashboard />} />
       <Route path='/doctorpatient' element={<Doctorpatient />} />
+      <Route path='/statusappointment' element={<Statusappointment />} />
+      <Route path='/viewdoctor' element={<ViewDoctor />} />
       <Route path='/patientcontact' element={<PatientContact />} />
       <Route path='/appointment' element={<Appointment />} />
     </Routes>

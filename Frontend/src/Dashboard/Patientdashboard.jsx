@@ -1,41 +1,98 @@
 import React from 'react'
 import { Outlet } from 'react-router-dom'
 import Patientside from '../Sidebar/Patientside.jsx'
+import Patientchart from '../Patientdashboard/Patientchart.jsx'
+import Allappointment from '../Patientdashboard/Allappointment.jsx'
+import Card from '../Comp/Card.jsx'
 
 
 const Patientdashboard = () => {
     return (
         <>
-            <div className='flex min-h-screen bg-gray-100'>
-                <div className='w-64 bg-white shadow-lg'>
-                    < Patientside />
-                </div>
 
-                <div className="min-h-screen bg-gray-100 p-6">
-                    <h1 className="text-3xl font-bold mb-6">Doctor Dashboard</h1>
+            <div className='flex min-h-screen '>
 
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        {/* Card 1 */}
-                        <div className="bg-white shadow rounded-lg p-6">
-                            <h2 className="text-xl font-semibold mb-2">Appointments Today</h2>
-                            <p className="text-4xl font-bold text-blue-600">12</p>
+                < Patientside />
+
+                <div className="p-6 bg-teal-50 min-h-screen ">
+                    <div className='flex gap-5'>
+
+                        <Card />
+                        <div className='w-80 shadow-lg rounded-xl p-4 flex items-center justify-between'>
+                            <div>
+                                <h2 className='text-gray-600 text-lg'>Total Surgery</h2>
+                            </div>
+                            <div className='flex space-x-3'>
+                                <img
+                                    src='https://plus.unsplash.com/premium_vector-1682270089736-01da39d8d527?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDEyfHx8ZW58MHx8fHx8'
+                                    className='w-25 h-25  object-cover'
+                                />
+                            </div>
                         </div>
-
-                        {/* Card 2 */}
-                        <div className="bg-white shadow rounded-lg p-6">
-                            <h2 className="text-xl font-semibold mb-2">Patients</h2>
-                            <p className="text-4xl font-bold text-green-600">45</p>
+                        <div className='w-80 shadow-lg rounded-xl p-4 flex items-center justify-between'>
+                            <div>
+                                <h2 className='text-gray-600 text-lg'>Total Staffs</h2>
+                            </div>
+                            <div className='flex space-x-3'>
+                                <img
+                                    src='https://plus.unsplash.com/premium_vector-1714618846503-b44d1d284c6a?q=80&w=1122&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+                                    className='w-25 h-25  object-cover'
+                                />
+                            </div>
                         </div>
-
-                        {/* Card 3 */}
-                        <div className="bg-white shadow rounded-lg p-6">
-                            <h2 className="text-xl font-semibold mb-2">Pending Reports</h2>
-                            <p className="text-4xl font-bold text-yellow-600">5</p>
+                        <div className='w-80 shadow-lg rounded-xl p-4 flex items-center justify-between'>
+                            <div>
+                                <h2 className='text-gray-600 text-lg'>Total Patient</h2>
+                            </div>
+                            <div className='flex space-x-3'>
+                                <img
+                                    src='https://plus.unsplash.com/premium_vector-1682305739336-be469218b857?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDI0fHx8ZW58MHx8fHx8'
+                                    className='w-25 h-25  object-cover'
+                                />
+                            </div>
                         </div>
                     </div>
+
+                    {/* Charts Section */}
+                    <div className="flex-1">
+                        <Patientchart />
+                    </div>
+                    <div className='flex gap-6'>
+
+
+                        <div className='w-80 shadow-lg rounded-xl p-4 flex items-center justify-between'>
+                            <div>
+                                <h2 className='text-gray-600 text-lg'>New Patient</h2>
+                            </div>
+                            <div className='flex space-x-3'>
+                                <div className='flex flex-row justify-center items-end rounded-full  p-4 bg-green-200'>25</div>
+                            </div>
+                        </div>
+                        <div className='w-80 shadow-lg rounded-xl p-4 flex items-center justify-between'>
+                            <div>
+                                <h2 className='text-gray-600 text-lg'>Old Patient</h2>
+                            </div>
+                            <div className='flex space-x-3'>
+                                <div className='flex flex-row justify-center items-end rounded-full  p-4 bg-red-200'>20</div>
+                            </div>
+                        </div>
+                        <div className='w-80 shadow-lg rounded-xl p-4 flex items-center justify-between'>
+                            <div>
+                                <h2 className='text-gray-600 text-lg'>Today Patient</h2>
+                            </div>
+                            <div className='flex space-x-3'>
+                                <div className='flex flex-row justify-center items-end rounded-full  p-4 bg-yellow-200'>15</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="flex-1">
+                        <Allappointment />
+                    </div>
                 </div>
-                <Outlet />
+
             </div>
+
         </>
     )
 }

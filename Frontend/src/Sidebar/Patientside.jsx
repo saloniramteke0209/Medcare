@@ -1,48 +1,40 @@
-import React from 'react'
-import { FaBell, FaCalendarCheck, FaCog, FaSearch, FaSignOutAlt, FaTachometerAlt, FaUserMd } from 'react-icons/fa'
+import React, { useState } from 'react'
+import { FaBell, FaCalendarCheck, FaCog, FaRegCalendarCheck, FaSearch, FaSignOutAlt, FaTachometerAlt, FaUserMd } from 'react-icons/fa'
+import { FaUserInjured } from 'react-icons/fa6'
+import { GoPerson } from 'react-icons/go'
 import { Link } from 'react-router-dom'
 
 
 const Patientside = () => {
+    // const [active, setActive] = useState("dashboard");
 
+    const menuItems = [
+        { id: "dashboard", icon: <FaTachometerAlt size={20} />, path: "/patientdashboard" },
+        { id: "appointments", icon: <FaRegCalendarCheck size={20} />, path: "/appointment" },
+        { id: "patients", icon: <FaUserInjured size={20} />, path: "/statusappointment" },
+        { id: "doctors", icon: <FaUserMd size={20} />, path: "/viewdoctor" },
+        { id: "review", icon: <GoPerson size={20} />, path: "/patientcontact" },
+        { id: "logout", icon: <FaSignOutAlt size={20} />, path: "/" },
+    ];
     return (
         <>
-            <div className="w-60 bg-white h-screen p-5 shadow-lg">
-                <h1 className="text-2xl font-bold mb-8">MedTrack</h1>
+            <div className="w-20 bg-white h-screen flex flex-col items-center py-6 shadow-lg">
+                {/* Logo / Short Name */}
+                <div className="mb-10 text-xl font-bold">Medcare</div>
 
-                <ul className="space-y-4">
-                    <li>
-                        <Link to="/patientdashboard" className="flex items-center space-x-2 hover:text-teal-600">
-                            <FaTachometerAlt /> <span>Dashboard</span>
+                {menuItems.map((item) => {
+                    const isActive = location.pathname === item.path;
+                    return (
+                        <Link
+                            key={item.id}
+                            to={item.path}
+                            className={`flex items-center justify-center w-12 h-12 my-3 rounded-full transition-all duration-300
+              ${isActive ? "bg-teal-500 text-white" : "text-gray-600 hover:bg-gray-200"}`}
+                        >
+                            {item.icon}
                         </Link>
-                    </li>
-                    <li>
-                        <Link to="/appointment" className="flex items-center space-x-2 hover:text-teal-600">
-                            <FaCalendarCheck /> <span>Appointments</span>
-                        </Link>
-                    </li>
-                    <li>
-                        <Link to="/settings" className="flex items-center space-x-2 hover:text-teal-600">
-                            <FaCog /> <span>Settings</span>
-                        </Link>
-                    </li>
-                    <li>
-                        <Link to="/" className="flex items-center space-x-2 hover:text-teal-600">
-                            <FaSignOutAlt /> <span>Logout</span>
-                        </Link>
-                    </li>
-                </ul>
-
-                {/* Search box */}
-                <div className="mt-6 flex items-center bg-[#FAF3E0] rounded px-2 py-1">
-                    <FaSearch className="text-gray-400" />
-                    <input
-                        type="text"
-                        placeholder="Search"
-                        className="bg-transparent outline-none px-2 w-full"
-                    />
-                </div>
-
+                    );
+                })}
             </div>
         </>
 

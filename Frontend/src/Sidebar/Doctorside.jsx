@@ -2,54 +2,37 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { FaBell, FaCalendarCheck, FaUserInjured } from 'react-icons/fa6';
 import { FaCog, FaSearch, FaSignOutAlt, FaTachometerAlt } from 'react-icons/fa';
+import { GoPerson } from 'react-icons/go';
 
 
 const Doctorside = () => {
-
+    const menuItems = [
+        { id: "dashboard", icon: <FaTachometerAlt size={20} />, path: "/doctordashboard" },
+        { id: "patientappointments", icon: <FaCalendarCheck size={20} />, path: "/patientappointment" },
+        { id: "review", icon: <GoPerson size={20} />, path: "/docontact" },
+        { id: "logout", icon: <FaSignOutAlt size={20} />, path: "/" },
+    ];
     return (
-        <>
-            <div className="w-60 bg-white h-screen p-5 shadow-lg">
-                <h1 className="text-2xl font-bold mb-8">MedTrack</h1>
 
-                <ul className="space-y-4">
-                    <li>
-                        <Link to="/doctordashboard" className="flex items-center space-x-2 hover:text-teal-600">
-                            <FaTachometerAlt /> <span>Dashboard</span>
-                        </Link>
-                    </li>
-                    <li>
-                        <Link to="/patientappointment" className="flex items-center space-x-2 hover:text-teal-600">
-                            <FaUserInjured /> <span>Patients</span>
-                        </Link>
-                    </li>
-                    <li>
-                        <Link to="/appointment" className="flex items-center space-x-2 hover:text-teal-600">
-                            <FaCalendarCheck /> <span>Appointments</span>
-                        </Link>
-                    </li>
-                    <li>
-                        <Link to="/settings" className="flex items-center space-x-2 hover:text-teal-600">
-                            <FaCog /> <span>Settings</span>
-                        </Link>
-                    </li>
-                    <li>
-                        <Link to="/" className="flex items-center space-x-2 hover:text-teal-600">
-                            <FaSignOutAlt /> <span>Logout</span>
-                        </Link>
-                    </li>
-                </ul>
+        <div className="w-16 bg-white h-screen flex flex-col items-center py-6 shadow-lg">
+            {/* Logo / Short Name */}
+            <div className="mb-6 text-xl font-bold">Medcare</div>
 
-                {/* Search box */}
-                <div className="mt-6 flex items-center bg-[#FAF3E0] rounded px-2 py-1">
-                    <FaSearch className="text-gray-400" />
-                    <input
-                        type="text"
-                        placeholder="Search"
-                        className="bg-transparent outline-none px-2 w-full"
-                    />
-                </div>
-            </div>
-        </>
+            {menuItems.map((item) => {
+                const isActive = location.pathname === item.path;
+                return (
+                    <Link
+                        key={item.id}
+                        to={item.path}
+                        className={`flex items-center justify-center w-10 h-10 my-2 rounded-full transition-all duration-300
+                         ${isActive ? "bg-teal-500 text-white" : "text-gray-600 hover:bg-gray-200"}`}
+                    >
+                        {item.icon}
+                    </Link>
+                );
+            })}
+        </div>
+
     )
 }
 

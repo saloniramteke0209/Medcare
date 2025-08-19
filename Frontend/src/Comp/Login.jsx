@@ -14,7 +14,7 @@ const Login = () => {
         try {
             console.log("Submitting:", { name, email, role });
             // sends login request to backend
-            const res = await axios.post('http://localhost:3000/api/login', {
+            const res = await axios.post(' https://med-1-9k1u.onrender.com/api/login', {
                 name,
                 email,
                 role
@@ -28,6 +28,7 @@ const Login = () => {
                 // saves JWT token
                 localStorage.setItem("token", res.data.token);
                 localStorage.setItem("role", res.data.role);
+                localStorage.setItem("name", res.data.name);
 
                 if (res.data.role === "admin") {
                     navigate("/admin");

@@ -14,6 +14,10 @@ const patientSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    // status: {
+    //     type: String,
+    //     enum: ["pending", "approved", "rejected"], default: "pending"
+    // },
     isLoggedIn: {
         type: Boolean,
         default: false,

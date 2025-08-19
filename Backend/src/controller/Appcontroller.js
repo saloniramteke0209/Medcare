@@ -4,9 +4,9 @@ import { Hop } from '../models/Appmodel.js';
 
 export const Registerappointment = async (req, res) => {
     try {
-        const { Name, Number, Record, Reason, Department, Date, Time } = req.body || {};
+        const { Name, Number, Record, Reason, Department, Date, Time, Age, History } = req.body || {};
 
-        if (!Name || !Number || !Record || !Reason || !Department || !Date || !Time) {
+        if (!Name || !Number || !Record || !Reason || !Department || !Date || !Time || !Age || !History) {
             return res.status(400).json({ message: "Fill the all information" })
         }
         const exist = await Hop.findOne({ Record })
@@ -20,7 +20,10 @@ export const Registerappointment = async (req, res) => {
             Reason,
             Department,
             Date,
-            Time
+            Time,
+            Age,
+            History,
+            status: "pending"
         });
         await addObj.save();
         return res.status(201).json({ user: addObj })
@@ -41,3 +44,22 @@ export const getAppointment = async (req, res) => {
     }
 }
 
+export const updateStatus = async (req, res) => {
+    try {
+        const { status } = req.body;
+        const appointmentId = req.params.id;
+
+        const updatedAppointment = await Hop.findByIdAndUpdate(
+            appointmentId,
+            { status },
+            { new: true }
+        );
+
+        if (!updatedAppointment) return res.status(404).json({ message: "Appointment not found" });
+
+        res.json(updatedAppointment);
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({ message: "Server error" });
+    }
+};

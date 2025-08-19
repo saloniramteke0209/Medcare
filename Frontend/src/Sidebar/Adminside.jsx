@@ -1,81 +1,38 @@
 import React from 'react'
 import { FaCog, FaSearch, FaSignOutAlt, FaTachometerAlt, FaUserMd } from 'react-icons/fa'
 import { FaBell, FaCalendarCheck, FaUserInjured } from 'react-icons/fa6'
+import { GoPerson } from 'react-icons/go'
 import { Link } from 'react-router-dom'
 
 const Adminside = () => {
+    const menuItems = [
+        { id: "dashboard", icon: <FaTachometerAlt size={20} />, path: "/admindashboard" },
+        { id: "appointments", icon: <FaCalendarCheck size={20} />, path: "/getappointment" },
+        { id: "doctors", icon: <FaUserMd size={20} />, path: "/getdoctor" },
+        { id: "patients", icon: <FaUserInjured size={20} />, path: "/appointment" },
+        { id: "review", icon: <GoPerson size={20} />, path: "/admincontact" },
+        { id: "logout", icon: <FaSignOutAlt size={20} />, path: "/" },
+    ];
     return (
         <>
-            <div>
-                <h1 className="text-2xl text-[#FAF3E0] font-bold mb-10 tracking-wide">MedTrack</h1>
+            <div className="w-20 bg-white h-screen flex flex-col items-center py-6 shadow-lg">
+                {/* Logo / Short Name */}
+                <div className="mb-10 text-xl font-bold">Medcare</div>
 
-                <ul className="space-y-3">
-                    {/* Dashboard */}
-                    <li>
+                {menuItems.map((item) => {
+                    const isActive = location.pathname === item.path;
+                    return (
                         <Link
-                            to="/admindashboard"
-                            className={`flex items-center space-x-3 p-3 rounded-lg transition-all duration-300 
-                                    ${location.pathname === "/admindashboard"
-                                    ? "bg-[#FF6F61] text-white border-l-4 border-[#FFD700] shadow-md"
-                                    : "text-[#FAF3E0] hover:bg-[#FF6F61] hover:text-white"}`}
+                            key={item.id}
+                            to={item.path}
+                            className={`flex items-center justify-center w-12 h-12 my-3 rounded-full transition-all duration-300
+                                   ${isActive ? "bg-teal-500 text-white" : "text-gray-600 hover:bg-gray-200"}`}
                         >
-                            <FaTachometerAlt /> <span>Dashboard</span>
+                            {item.icon}
                         </Link>
-                    </li>
-
-                    {/* Doctors */}
-                    <li>
-                        <Link
-                            to="/getdoctor"
-                            className={`flex items-center space-x-3 p-3 rounded-lg transition-all duration-300 
-                                    ${location.pathname === "/getdoctor"
-                                    ? "bg-[#FF6F61] text-white border-l-4 border-[#FFD700] shadow-md"
-                                    : "text-[#FAF3E0] hover:bg-[#FF6F61] hover:text-white"}`}
-                        >
-                            <FaUserMd /> <span>Doctors</span>
-                        </Link>
-                    </li>
-
-                    {/* Patients */}
-                    <li>
-                        <Link
-                            to="/getappointment"
-                            className={`flex items-center space-x-3 p-3 rounded-lg transition-all duration-300 
-                                    ${location.pathname === "/getappointment"
-                                    ? "bg-[#FF6F61] text-white border-l-4 border-[#FFD700] shadow-md"
-                                    : "text-[#FAF3E0] hover:bg-[#FF6F61] hover:text-white"}`}
-                        >
-                            <FaUserInjured /> <span>Patients</span>
-                        </Link>
-                    </li>
-
-                    {/* Appointments */}
-                    <li>
-                        <Link
-                            to="/appointment"
-                            className={`flex items-center space-x-3 p-3 rounded-lg transition-all duration-300 
-                                    ${location.pathname === "/appointment"
-                                    ? "bg-[#FF6F61] text-white border-l-4 border-[#FFD700] shadow-md"
-                                    : "text-[#FAF3E0] hover:bg-[#FF6F61] hover:text-white"}`}
-                        >
-                            <FaCalendarCheck /> <span>Appointments</span>
-                        </Link>
-                    </li>
-
-
-
-                    {/* Logout */}
-                    <li>
-                        <Link
-                            to="/"
-                            className="flex items-center space-x-3 p-3 rounded-lg text-[#FAF3E0] hover:bg-red-500 hover:text-white transition-all duration-300"
-                        >
-                            <FaSignOutAlt /> <span>Logout</span>
-                        </Link>
-                    </li>
-                </ul>
+                    );
+                })}
             </div>
-
         </>
 
     )
