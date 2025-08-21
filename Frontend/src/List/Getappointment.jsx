@@ -10,7 +10,7 @@ const Getappointment = () => {
     useEffect(() => {
         const fetchAppoinment = async () => {
             try {
-                const appoinmentRes = await axios.get(' https://med-1-9k1u.onrender.com/api/appointment/allapponiment')
+                const appoinmentRes = await axios.get('http://localhost:3000/api/appointment/allapponiment')
                 setAppointment(appoinmentRes.data)
             }
             catch (error) {

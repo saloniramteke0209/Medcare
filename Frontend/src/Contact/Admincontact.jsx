@@ -11,10 +11,11 @@ const Admincontact = () => {
     useEffect(() => {
         const fetchContact = async () => {
             try {
-                const contactRes = await axios.get("https://med-1-9k1u.onrender.com/api/review/getAllReview", { params: filter ? { role: filter } : {} })
-                // console.log("Final request URL:", contactRes.config.url);
-                // console.log("Params sent:", contactRes.config.params);
-                // console.log("Data received:", contactRes.data);
+                const url = "http://localhost:3000/api/review/getAllReview";
+                console.log("Final URL:", url);
+                const contactRes = await axios.get(url, {
+                    params: filter ? { role: filter } : {}
+                });
 
                 setContact(contactRes.data)
             }

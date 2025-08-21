@@ -14,10 +14,10 @@ export const Registercontact = async (req, res) => {
             return res.status(400).json({ message: "Email already exist" })
         }
         const addReview = new Review({
-            name: req.user.name,
-            email: req.user.email,
-            review: req.body.review,
-            role: req.user.role,
+            name,
+            email,
+            review,
+            role,
         });
         await addReview.save()
         return res.status(200).json({ user: addReview });
@@ -31,10 +31,14 @@ export const Registercontact = async (req, res) => {
 export const getReview = async (req, res) => {
     try {
         const { role } = req.query;
-        let query = {}
-        if (role) query.role = role;
-        const reviews = await Review.find(query);
-        res.json(reviews);
+        let reviews;
+        if (role) {
+            reviews = await Review.find({ role });
+        }
+        else {
+            reviews = await Review.find();
+        }
+        res.status(200).json(reviews)
     }
     catch (error) {
         console.error("Error fetching reviews:", error.message);

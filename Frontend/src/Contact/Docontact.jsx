@@ -14,13 +14,15 @@ const Docontact = () => {
         e.preventDefault();
         try {
             const user = JSON.parse(localStorage.getItem("user"));
-            await axios.post(' https://med-1-9k1u.onrender.com/api/review/', {
-                name: user?.name,
-                email: user?.email,
-                review,
-                role: user?.role
+            console.log("Posting to:", "http://localhost:3000/api/review/create");
+            axios.post("http://localhost:3000/api/review/create"
+                , {
+                    name,
+                    email,
+                    review,
+                    role: "doctor"
 
-            }, {
+                }, {
                 headers: {
                     'Content-Type': 'application/json'
                 }
@@ -33,10 +35,10 @@ const Docontact = () => {
         }
     }
     return (
-        <div className='flex min-h-screen bg-gray-100'>
-            <div className='w-64 bg-white shadow-lg'>
-                <Doctorside />
-            </div>
+        <div className='flex min-h-screen '>
+
+            <Doctorside />
+
             <div className="min-h-screen bg-gray-50 px-4 py-10">
                 <div className="max-w-6xl mx-auto">
                     <h2 className="text-4xl font-bold text-center mb-10 text-blue-800">Contact Us</h2>

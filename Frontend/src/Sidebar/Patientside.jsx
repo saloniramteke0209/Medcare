@@ -1,44 +1,61 @@
-import React, { useState } from 'react'
-import { FaBell, FaCalendarCheck, FaCog, FaRegCalendarCheck, FaSearch, FaSignOutAlt, FaTachometerAlt, FaUserMd } from 'react-icons/fa'
-import { FaUserInjured } from 'react-icons/fa6'
-import { GoPerson } from 'react-icons/go'
-import { Link } from 'react-router-dom'
-
+import React from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { FaRegCalendarCheck, FaSignOutAlt, FaTachometerAlt, FaUserMd } from "react-icons/fa";
+import { FaUserInjured } from "react-icons/fa6";
+import { GoPerson } from "react-icons/go";
 
 const Patientside = () => {
-    // const [active, setActive] = useState("dashboard");
+    const location = useLocation();
+    const navigate = useNavigate();
 
     const menuItems = [
-        { id: "dashboard", icon: <FaTachometerAlt size={20} />, path: "/patientdashboard" },
-        { id: "appointments", icon: <FaRegCalendarCheck size={20} />, path: "/appointment" },
-        { id: "patients", icon: <FaUserInjured size={20} />, path: "/statusappointment" },
-        { id: "doctors", icon: <FaUserMd size={20} />, path: "/viewdoctor" },
-        { id: "review", icon: <GoPerson size={20} />, path: "/patientcontact" },
-        { id: "logout", icon: <FaSignOutAlt size={20} />, path: "/" },
+        { id: "dashboard", label: "Dashboard", icon: <FaTachometerAlt size={20} />, path: "/patientdashboard" },
+        { id: "appointments", label: "Appointments", icon: <FaRegCalendarCheck size={20} />, path: "/appointment" },
+        { id: "status", label: "Status", icon: <FaUserInjured size={20} />, path: "/statusappointment" },
+        { id: "doctors", label: "Doctors", icon: <FaUserMd size={20} />, path: "/viewdoctor" },
+        { id: "review", label: "Reviews", icon: <GoPerson size={20} />, path: "/patientcontact" },
     ];
+
+    const handleLogout = () => {
+        localStorage.removeItem("token"); // Clear token/session
+        navigate("/"); // Redirect to login
+    };
+
     return (
-        <>
-            <div className="w-20 bg-white h-screen flex flex-col items-center py-6 shadow-lg">
-                {/* Logo / Short Name */}
-                <div className="mb-10 text-xl font-bold">Medcare</div>
+        <div className="w-20 bg-white h-screen flex flex-col items-center py-6 shadow-lg">
+            {/* Logo */}
+            <div className="mb-10 text-lg font-extrabold text-teal-600">MEDTRACK</div>
 
-                {menuItems.map((item) => {
-                    const isActive = location.pathname === item.path;
-                    return (
-                        <Link
-                            key={item.id}
-                            to={item.path}
-                            className={`flex items-center justify-center w-12 h-12 my-3 rounded-full transition-all duration-300
-              ${isActive ? "bg-teal-500 text-white" : "text-gray-600 hover:bg-gray-200"}`}
-                        >
-                            {item.icon}
-                        </Link>
-                    );
-                })}
-            </div>
-        </>
+            {/* Menu Items */}
+            {menuItems.map((item) => {
+                const isActive = location.pathname === item.path;
+                return (
+                    <Link
+                        key={item.id}
+                        to={item.path}
+                        aria-label={item.label}
+                        className={`group relative flex items-center justify-center w-12 h-12 my-3 rounded-full transition-all duration-300
+              ${isActive ? "bg-teal-500 text-white shadow-md scale-110" : "text-gray-600 hover:bg-gray-200 hover:scale-105"}`}
+                    >
+                        {item.icon}
+                        {/* Tooltip */}
+                        <span className="absolute left-14 hidden group-hover:flex bg-teal-600 text-white text-xs px-2 py-1 rounded-md shadow-md whitespace-nowrap">
+                            {item.label}
+                        </span>
+                    </Link>
+                );
+            })}
 
-    )
-}
+            {/* Logout */}
+            <button
+                onClick={handleLogout}
+                aria-label="Logout"
+                className="mt-auto flex items-center justify-center w-12 h-12 my-3 rounded-full text-red-500 hover:bg-red-100 transition-all duration-300"
+            >
+                <FaSignOutAlt size={20} />
+            </button>
+        </div>
+    );
+};
 
-export default Patientside
+export default Patientside;

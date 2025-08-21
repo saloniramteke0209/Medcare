@@ -3,6 +3,7 @@ import { Doctor } from '../models/Docmodels.js'
 import { Patient } from '../models/Patientmodel.js'
 import { Auth } from '../models/Authmodels.js'
 import { Hop } from '../models/Appmodel.js'
+import { Notification } from '../models/Notification.js'
 
 
 export const Registerdoctor = async (req, res) => {
@@ -24,7 +25,11 @@ export const Registerdoctor = async (req, res) => {
         await addDoctor.save()
         const auth = new Auth({ name, email, role: "doctor" })
         await auth.save();
-        return res.status(200).json({ user: addDoctor })
+        await Notification.create({
+            message: `New doctor registered:${addDoctor.name}`,
+            type: "doctor"
+        })
+        return res.status(200).json({ user: addDoctor, message: "Doctor registere successfully" })
     }
     catch (error) {
         console.log(error)

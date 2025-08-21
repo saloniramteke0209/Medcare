@@ -3,7 +3,7 @@ import { getReview, Registercontact } from '../controller/Reviewcontroller.js'
 
 const Reviewrouter = express.Router()
 
-Reviewrouter.post('/', Registercontact)
+Reviewrouter.post('/create', Registercontact)
 Reviewrouter.get('/getAllReview', getReview)
 console.log("Review routes loaded");
 

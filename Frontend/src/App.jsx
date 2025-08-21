@@ -28,6 +28,7 @@ import Doctor from './Pages/Doctor.jsx'
 import Patient from './Pages/Patient.jsx'
 import Statusappointment from './List/Statusappointment.jsx'
 import ViewDoctor from './Comp/Viewdoctor.jsx'
+import NotificationPage from './Comp/NotificationPage.jsx'
 // import Patientside from './Sidebar/Patientside.jsx'
 
 
@@ -47,6 +48,7 @@ function App() {
       <Route path='/admindashboard' element={<Admindashboard />} />
       <Route path='/getappointment' element={<Getappointment />} />
       <Route path='/getdoctor' element={<Getdoctor />} />
+      <Route path='/notificationpage' element={<NotificationPage />} />
       <Route path='/admincontact' element={<Admincontact />} />
 
       <Route path='/doctor/*' element={

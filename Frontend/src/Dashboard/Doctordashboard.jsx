@@ -4,6 +4,7 @@ import { Outlet } from 'react-router-dom'
 import Doctorchart from '../Doctordashboard/Doctorchart.jsx'
 import Patinet from '../Doctordashboard/Patinet.jsx'
 import Card from '../Comp/Card.jsx'
+import NotificationPage from '../Comp/NotificationPage.jsx'
 
 
 const Doctordashboard = () => {

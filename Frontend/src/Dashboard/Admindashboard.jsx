@@ -5,6 +5,7 @@ import Chart from '../Admindashboard/Adminchart.jsx'
 
 import Department from '../Admindashboard/Admindepartment.jsx'
 import Card from '../Comp/Card.jsx'
+import NotificationPage from '../Comp/NotificationPage.jsx'
 
 const Admindashboard = () => {
     return (
@@ -17,6 +18,7 @@ const Admindashboard = () => {
                     <div className='flex gap-6'>
 
                         <Card />
+                        <NotificationPage />
                         <div className='w-80 shadow-lg rounded-xl p-4 flex items-center justify-between'>
                             <div>
                                 <h2 className='text-gray-600 text-lg'>Total Surgery</h2>

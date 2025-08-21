@@ -9,7 +9,7 @@ const Getdoctor = () => {
     useEffect(() => {
         const fetchDoctor = async () => {
             try {
-                const doctorRes = await axios.get(" https://med-1-9k1u.onrender.com/api/admin/doctor");
+                const doctorRes = await axios.get("http://localhost:3000/api/admin/doctor");
                 setDoctors(doctorRes.data);
             } catch (error) {
                 console.log(error);

@@ -18,7 +18,7 @@ const Appointment = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.post(' https://med-1-9k1u.onrender.com/api/appointment/', {
+            await axios.post(' http://localhost:3000/api/appointment/', {
                 Name: name,
                 Number: number,
                 Record: record,

@@ -11,7 +11,7 @@ const Statusappointment = () => {
     useEffect(() => {
         const fetchAppoinment = async () => {
             try {
-                const appoinmentRes = await axios.get(' https://med-1-9k1u.onrender.com/api/appointment/allapponiment')
+                const appoinmentRes = await axios.get('http://localhost:3000/api/appointment/allapponiment')
                 setAppointment(appoinmentRes.data)
             }
             catch (error) {
@@ -20,16 +20,16 @@ const Statusappointment = () => {
         }
         fetchAppoinment();
     }, []);
-    const getStatusBadge = (status) => {
-        switch (status.toLowerCase()) {
-            case 'pending':
-                return 'bg-yellow-200 text-yellow-800';
-            case 'approved':
-                return 'bg-green-300 text-green-800';
-            case 'rejected':
-                return 'bg-red-300 text-red-800';
+    const getStatusClass = (status) => {
+        switch (status?.toLowerCase()) {
+            case "pending":
+                return "text-yellow-500"
+            case "approved":
+                return "text-green-500"
+            case "rejected":
+                return "text-red-500"
             default:
-                return 'bg-gray-100 text-gray-800'
+                return "text-gray-500"
         }
     }
     return (
@@ -60,9 +60,9 @@ const Statusappointment = () => {
                                     <p className="text-gray-600"><strong>Department:</strong> {app.Department}</p>
                                     <p className="text-gray-600"><strong>Date:</strong> {new Date(app.Date).toLocaleDateString()}</p>
                                     <span
-                                        className={`inline-block mt-2 px-3 py-1 rounded-full text-sm font-medium ${getStatusBadge(app.status)}`}
+                                        className={`inline-block mt-2 px-3 py-1 rounded-full text-sm font-medium ${getStatusClass(app.status || app.Status)}`}
                                     >
-                                        {app.status}
+                                        {app.status || app.Status || "pending"}
                                     </span>
                                 </div>
                             ))}

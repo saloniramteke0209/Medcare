@@ -8,6 +8,7 @@ import Doctorrouter from './router/Docrouter.js';
 import Patientrouter from './router/Patientrouter.js';
 import Approuter from './router/Approuter.js';
 import Reviewrouter from './router/Reviewrouter.js';
+import Notificationrouter from './router/NotificationRouter.js';
 
 
 
@@ -24,6 +25,7 @@ app.use('/api/doctor', Doctorrouter)
 app.use('/api/patient', Patientrouter)
 app.use('/api/appointment', Approuter)
 app.use('/api/review', Reviewrouter)
+app.use('/api/notifications', Notificationrouter)
 
 const PORT = process.env.PORT
 app.listen(PORT, () => {

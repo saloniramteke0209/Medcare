@@ -14,13 +14,15 @@ const PatientContact = () => {
         e.preventDefault();
         try {
             const user = JSON.parse(localStorage.getItem("user"));
-            await axios.post(' https://med-1-9k1u.onrender.com/api/review/', {
-                name: user?.name,
-                email: user?.email,
-                review,
-                role: user?.role
+            console.log("Posting to:", "http://localhost:3000/api/review/create");
+            axios.post("http://localhost:3000/api/review/create"
+                , {
+                    name,
+                    email,
+                    review,
+                    role: "doctor"
 
-            }, {
+                }, {
                 headers: {
                     'Content-Type': 'application/json'
                 }
