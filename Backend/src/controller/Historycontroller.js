@@ -1,7 +1,7 @@
 // controllers/historyController.js
 import jwt from "jsonwebtoken";
-import { Patient } from "../models/Patientmodel.js";
-import { Doctor } from "../models/Docmodels.js";
+// import { Patient } from "../models/Patientmodel.js";
+// import { Doctor } from "../models/Docmodels.js";
 import History from "../models/History.js";
 
 const JWT_SECRET = process.env.SECRET // better: process.env.JWT_SECRET
@@ -14,10 +14,13 @@ const getUserFromReq = (req) => {
     if (!authHeader) throw new Error("No token provided");
 
     const token = authHeader.split(" ")[1];
-    if (!token) throw new Error("No token provided");
-
-    return jwt.verify(token, process.env.SECRET);
-    // returns { id, email, role }
+    try {
+        const decoded = jwt.verify(token, process.env.SECRET);
+        req.user = decoded; // now req.user = { id, email, role }
+        next();
+    } catch (err) {
+        return res.status(401).json({ error: "Invalid token" });
+    }
 };
 
 /**
@@ -25,37 +28,25 @@ const getUserFromReq = (req) => {
  */
 export const addHistory = async (req, res) => {
     try {
-        const user = getUserFromReq(req);
-
-        if (user.role !== "doctor") {
+        if (req.user.role !== "doctor") {
             return res.status(403).json({ error: "Only doctors can add history" });
         }
 
-        // const doctor = await Doctor.findOne({ email: user.email });
-        // if (!doctor) return res.status(404).json({ error: "Doctor not found" });
+        const { patientId, condition, medication, notes, date } = req.body;
 
-        const { patient, condition, medication, notes, date } = req.body;
-
-        // patient can be passed as ID or name
-        let patientDoc = await Patient.findById(patient);
-        if (!patientDoc) {
-            patientDoc = await Patient.findOne({ name: patient });
-        }
-        if (!patientDoc) return res.status(404).json({ error: "Patient not found" });
-
-        const history = await History.create({
-            patient,
-            doctor: user._id,
+        const newHistory = new History({
+            patient: patientId,
             condition,
             medication,
             notes,
             date,
+            doctor: req.user.id,
         });
+        await newHistory.save();
+        res.status(201).json(newHistory);
 
-        res.status(201).json(history);
-    } catch (e) {
-        console.error(e);
-        res.status(500).json({ error: e.message });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
     }
 };
 
@@ -64,22 +55,18 @@ export const addHistory = async (req, res) => {
  */
 export const getHistoryByPatient = async (req, res) => {
     try {
-        const user = getUserFromReq(req);
-
-        if (user.role !== "doctor") {
-            return res.status(403).json({ error: "Only doctors can view patient histories" });
-        }
-
         const { patientId } = req.params;
 
-        const histories = await History.find({ patient: patientId })
-            .populate("doctor", "name email")
-            .populate("patient", "name email")
-            .sort({ date: -1 });
+        // Patient can view ONLY their own history
+        if (req.user.role === "patient" && req.user.id !== patientId) {
+            return res.status(403).json({ error: "Cannot view another patient’s history" });
+        }
 
+        const histories = await History.find({ patient: patientId }).populate("addedBy", "name role");
         res.json(histories);
-    } catch (e) {
-        res.status(500).json({ error: e.message });
+
+    } catch (err) {
+        res.status(500).json({ error: err.message });
     }
 };
 

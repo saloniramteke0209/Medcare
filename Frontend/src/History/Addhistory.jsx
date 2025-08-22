@@ -16,16 +16,16 @@ const AddHistory = () => {
 
     const token = localStorage.getItem("token");
 
-    const fetchPatients = async () => {
-        try {
-            const res = await axios.get("https://medcare-cwzf.onrender.com/api/doctor/patient", {
-                headers: { Authorization: `Bearer ${token}` },
-            });
-            setPatients(res.data);
-        } catch (err) {
-            console.error("Error fetching patients:", err.response?.data || err.message);
-        }
-    };
+    // const fetchPatients = async () => {
+    //     try {
+    //         const res = await axios.get("https://medcare-cwzf.onrender.com/api/doctor/patient", {
+    //             headers: { Authorization: `Bearer ${token}` },
+    //         });
+    //         setPatients(res.data);
+    //     } catch (err) {
+    //         console.error("Error fetching patients:", err.response?.data || err.message);
+    //     }
+    // };
 
     // 🔹 Fetch histories for selected patient
     const fetchHistories = async () => {
@@ -41,13 +41,7 @@ const AddHistory = () => {
         }
     };
 
-    useEffect(() => {
-        fetchPatients();
-    }, []);
 
-    useEffect(() => {
-        fetchHistories();
-    }, [selectedPatient]);
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -62,7 +56,13 @@ const AddHistory = () => {
         try {
             const res = await axios.post(
                 " https://medtarck.onrender.com/api/history",
-                { ...formData, patient: selectedPatient },
+                {
+                    patientId: selectedPatient,
+                    condition: formData.condition,
+                    medication: formData.medication,
+                    notes: formData.notes,
+                    date: formData.date,
+                },
                 { headers: { Authorization: `Bearer ${token}` } }
             );
             setHistories([res.data, ...histories]);
@@ -72,9 +72,9 @@ const AddHistory = () => {
         }
     };
 
-    useEffect(() => {
-        fetchPatients(); // load patients for dropdown
-    }, []);
+    // useEffect(() => {
+    //     fetchPatients(); // load patients for dropdown
+    // }, []);
 
     useEffect(() => {
         fetchHistories(); // fetch history when patient changes
