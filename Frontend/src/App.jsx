@@ -30,6 +30,7 @@ import ViewDoctor from './Comp/Viewdoctor.jsx'
 import NotificationPage from './Comp/NotificationPage.jsx'
 import AddHistory from './History/Addhistory.jsx'
 import PatientHistory from './History/PatientHistory.jsx'
+import Blog from './Comp/Blog.jsx'
 // import Patientside from './Sidebar/Patientside.jsx'
 
 
@@ -37,44 +38,47 @@ import PatientHistory from './History/PatientHistory.jsx'
 function App() {
 
   return (
+    <BrowserRouter>
+      <Routes>
+        <Route path='/' element={<Login />} />
+        <Route path='about' element={<About />} />
+        <Route path='/admin/*' element={
+          <PrivateRoute role="admin">
+            <Admin />
+          </PrivateRoute>} />
+        <Route path='/admhome' element={<Admhome />} />
+        <Route path='/admindashboard' element={<Admindashboard />} />
+        <Route path='/getappointment' element={<Getappointment />} />
+        <Route path='/blog' element={<Blog />} />
+        <Route path='/notificationpage' element={<NotificationPage />} />
+        <Route path='/admincontact' element={<Admincontact />} />
 
-    <Routes>
-      <Route path='/' element={<Login />} />
-      <Route path='about' element={<About />} />
-      <Route path='/admin/*' element={
-        <PrivateRoute role="admin">
-          <Admin />
-        </PrivateRoute>} />
-      <Route path='/admhome' element={<Admhome />} />
-      <Route path='/admindashboard' element={<Admindashboard />} />
-      <Route path='/getappointment' element={<Getappointment />} />
-      <Route path='/notificationpage' element={<NotificationPage />} />
-      <Route path='/admincontact' element={<Admincontact />} />
+        <Route path='/doctor/*' element={
+          <PrivateRoute role="doctor">
+            <Doctor />
+          </PrivateRoute>} />
+        <Route path='/dochome' element={<Dochome />} />
+        <Route path='/doctordashboard' element={<Doctordashboard />} />
+        <Route path='/patientappointment' element={<Patientappointment />} />
+        <Route path='/blog' element={<Blog />} />
+        <Route path='/addhistory' element={<AddHistory />} />
+        <Route path='/docontact' element={<Docontact />} />
 
-      <Route path='/doctor/*' element={
-        <PrivateRoute role="doctor">
-          <Doctor />
-        </PrivateRoute>} />
-      <Route path='/dochome' element={<Dochome />} />
-      <Route path='/doctordashboard' element={<Doctordashboard />} />
-      <Route path='/patientappointment' element={<Patientappointment />} />
-      <Route path='/addhistory' element={<AddHistory />} />
-      <Route path='/docontact' element={<Docontact />} />
-
-      <Route path='/patient/*' element={
-        <PrivateRoute role="patient">
-          <Patient />
-        </PrivateRoute>} />
-      <Route path='/patihome' element={<Patihome />} />
-      <Route path='/patientdashboard' element={<Patientdashboard />} />
-      <Route path='/doctorpatient' element={<Doctorpatient />} />
-      <Route path='/statusappointment' element={<Statusappointment />} />
-      <Route path='/viewdoctor' element={<ViewDoctor />} />
-      <Route path='/patienthistory' element={<PatientHistory />} />
-      <Route path='/patientcontact' element={<PatientContact />} />
-      <Route path='/appointment' element={<Appointment />} />
-    </Routes>
-
+        <Route path='/patient/*' element={
+          <PrivateRoute role="patient">
+            <Patient />
+          </PrivateRoute>} />
+        <Route path='/patihome' element={<Patihome />} />
+        <Route path='/patientdashboard' element={<Patientdashboard />} />
+        <Route path='/doctorpatient' element={<Doctorpatient />} />
+        <Route path='/statusappointment' element={<Statusappointment />} />
+        <Route path='/viewdoctor' element={<ViewDoctor />} />
+        <Route path='/blog' element={<Blog />} />
+        <Route path='/patienthistory' element={<PatientHistory />} />
+        <Route path='/patientcontact' element={<PatientContact />} />
+        <Route path='/appointment' element={<Appointment />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
 

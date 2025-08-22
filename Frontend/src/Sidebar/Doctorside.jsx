@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaCalendarCheck } from "react-icons/fa6";
-import { FaSignOutAlt, FaTachometerAlt } from "react-icons/fa";
+import { FaNewspaper, FaSignOutAlt, FaTachometerAlt } from "react-icons/fa";
 import { GoPerson } from "react-icons/go";
 
 const Doctorside = () => {
@@ -11,6 +11,7 @@ const Doctorside = () => {
     const menuItems = [
         { id: "dashboard", label: "Dashboard", icon: <FaTachometerAlt size={20} />, path: "/doctordashboard" },
         { id: "appointments", label: "Appointments", icon: <FaCalendarCheck size={20} />, path: "/patientappointment" },
+        { id: "blog", label: "Blog", icon: <FaNewspaper size={20} />, path: "/blog" },
         { id: "addhistory", label: "addhistory", icon: <FaCalendarCheck size={20} />, path: "/addhistory" },
         { id: "review", label: "Reviews", icon: <GoPerson size={20} />, path: "/docontact" },
     ];

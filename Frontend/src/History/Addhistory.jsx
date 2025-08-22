@@ -19,7 +19,7 @@ const AddHistory = () => {
     // 🔹 Fetch all patients once (for dropdown)
     const fetchPatients = async () => {
         try {
-            const res = await axios.get("http://localhost:3000/api/patie", {
+            const res = await axios.get(" https://medtarck.onrender.com/api/patie", {
                 headers: { Authorization: `Bearer ${token}` },
             });
             setPatients(res.data);
@@ -33,7 +33,7 @@ const AddHistory = () => {
         if (!selectedPatient) return;
         try {
             const res = await axios.get(
-                `http://localhost:3000/api/history/${selectedPatient}`,
+                ` https://medtarck.onrender.com/api/history/${selectedPatient}`,
                 { headers: { Authorization: `Bearer ${token}` } }
             );
             setHistories(res.data);
@@ -54,7 +54,7 @@ const AddHistory = () => {
         }
         try {
             const res = await axios.post(
-                "http://localhost:3000/api/history",
+                " https://medtarck.onrender.com/api/history",
                 { ...formData, patient: selectedPatient },
                 { headers: { Authorization: `Bearer ${token}` } }
             );

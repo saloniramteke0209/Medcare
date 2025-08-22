@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Patientside from '../Sidebar/Patientside';
+
 
 const specialties = [
     {

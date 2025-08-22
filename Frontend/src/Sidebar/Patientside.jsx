@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { FaRegCalendarCheck, FaSignOutAlt, FaTachometerAlt, FaUserMd } from "react-icons/fa";
+import { FaNewspaper, FaRegCalendarCheck, FaSignOutAlt, FaTachometerAlt, FaUserMd } from "react-icons/fa";
 import { FaUserInjured } from "react-icons/fa6";
 import { GoPerson } from "react-icons/go";
 
@@ -12,6 +12,7 @@ const Patientside = () => {
         { id: "dashboard", label: "Dashboard", icon: <FaTachometerAlt size={20} />, path: "/patientdashboard" },
         { id: "appointments", label: "Appointments", icon: <FaRegCalendarCheck size={20} />, path: "/appointment" },
         { id: "status", label: "Status", icon: <FaUserInjured size={20} />, path: "/statusappointment" },
+        { id: "blog", label: "Blog", icon: <FaNewspaper size={20} />, path: "/blog" },
         { id: "doctors", label: "Doctors", icon: <FaUserMd size={20} />, path: "/viewdoctor" },
         { id: "review", label: "Reviews", icon: <GoPerson size={20} />, path: "/patientcontact" },
     ];

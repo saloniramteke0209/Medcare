@@ -9,7 +9,7 @@ const Patientappointment = () => {
     useEffect(() => {
         const fetchAppointment = async () => {
             try {
-                const res = await axios.get('http://localhost:3000/api/appointment/allapponiment');
+                const res = await axios.get(' https://medtarck.onrender.com/api/appointment/allapponiment');
                 setAppointment(res.data);
             } catch (error) {
                 console.log(error);
@@ -19,7 +19,7 @@ const Patientappointment = () => {
     }, []);
 
     const handleStatusUpdate = (id, status) => {
-        axios.put(`http://localhost:3000/api/appointment/${id}/status`, { status })
+        axios.put(` https://medtarck.onrender.com/api/appointment/${id}/status`, { status })
             .then(res => {
                 setAppointment(prev => prev.map(app => app._id === id ? res.data : app));
             })

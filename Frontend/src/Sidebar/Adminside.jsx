@@ -1,5 +1,5 @@
 import React from "react";
-import { FaSignOutAlt, FaTachometerAlt, FaUserMd } from "react-icons/fa";
+import { FaNewspaper, FaSignOutAlt, FaTachometerAlt, FaUserMd } from "react-icons/fa";
 import { FaCalendarCheck, FaUserInjured } from "react-icons/fa6";
 import { GoPerson } from "react-icons/go";
 import { Link, useLocation, useNavigate } from "react-router-dom";
@@ -12,6 +12,7 @@ const Adminside = () => {
         { id: "dashboard", label: "Dashboard", icon: <FaTachometerAlt size={20} />, path: "/admindashboard" },
         { id: "appointments", label: "Appointments", icon: <FaCalendarCheck size={20} />, path: "/getappointment" },
         { id: "doctors", label: "Doctors", icon: <FaUserMd size={20} />, path: "/viewdoctor" },
+        { id: "blog", label: "Blog", icon: <FaNewspaper size={20} />, path: "/blog" },
         { id: "patients", label: "Patients", icon: <FaUserInjured size={20} />, path: "/appointment" },
         { id: "review", label: "Reviews", icon: <GoPerson size={20} />, path: "/admincontact" },
     ];

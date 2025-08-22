@@ -7,12 +7,12 @@ const hopSchema = new mongoose.Schema({
         trim: true
     },
     Number: {
-        type: Number,
+        type: String,
         required: true,
         trim: true
     },
     Record: {
-        type: Number,
+        type: String,
         required: true,
         trim: true,
         unique: true
@@ -23,6 +23,11 @@ const hopSchema = new mongoose.Schema({
         trim: true
     },
     Department: {
+        type: String,
+        required: true,
+        trim: true
+    },
+    Gender: {
         type: String,
         required: true,
         trim: true
@@ -38,12 +43,7 @@ const hopSchema = new mongoose.Schema({
         trim: true
     },
     Age: {
-        type: String,
-        required: true,
-        trim: true
-    },
-    History: {
-        type: String,
+        type: Number,
         required: true,
         trim: true
     },

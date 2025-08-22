@@ -14,8 +14,8 @@ const Docontact = () => {
         e.preventDefault();
         try {
             const user = JSON.parse(localStorage.getItem("user"));
-            console.log("Posting to:", "http://localhost:3000/api/review/create");
-            axios.post("http://localhost:3000/api/review/create"
+            console.log("Posting to:", "https://medcare-cwzf.onrender.com/api/review/create");
+            axios.post("https://medcare-cwzf.onrender.com/api/review/create"
                 , {
                     name,
                     email,

@@ -11,7 +11,7 @@ const Admincontact = () => {
     useEffect(() => {
         const fetchContact = async () => {
             try {
-                const url = "http://localhost:3000/api/review/getAllReview";
+                const url = "https://medcare-cwzf.onrender.com/api/review/getAllReview";
                 console.log("Final URL:", url);
                 const contactRes = await axios.get(url, {
                     params: filter ? { role: filter } : {}

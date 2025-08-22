@@ -29,7 +29,7 @@ const Login = () => {
 
         try {
             const res = await axios.post(
-                'http://localhost:3000/api/login',
+                ' https://medtarck.onrender.com/api/login',
                 {
                     name: name.trim(),
                     email: email.trim(),
@@ -62,7 +62,7 @@ const Login = () => {
         setLoading(true);
 
         try {
-            const res = await axios.post("http://localhost:3000/api/forgot-password", { email })
+            const res = await axios.post(" https://medtarck.onrender.com/api/forgot-password", { email })
             setSuccessMsg(res.data.message || "Password reset token sent to email")
             const resetToken = res.data.resetToken;
             localStorage.setItem("resetToken", resetToken)
@@ -82,7 +82,7 @@ const Login = () => {
         setLoading(true);
         try {
             const token = localStorage.getItem("resetToken")
-            const res = await axios.post("http://localhost:3000/api/reset-password", {
+            const res = await axios.post(" https://medtarck.onrender.com/api/reset-password", {
                 token,
                 newPassword,
             });
@@ -106,7 +106,7 @@ const Login = () => {
                         : mode === "forgot"
                             ? "Forgot Password"
                             : "Reset Password"}
-                    MedCare Login</h2>
+                </h2>
                 {errorMsg && <p className="text-red-500 text-sm mb-4">{errorMsg}</p>}
                 {successMsg && <p className="text-red-500 text-sm mb-4">{successMsg}</p>}
                 <form onSubmit={handleSubmit} className="space-y-4">
