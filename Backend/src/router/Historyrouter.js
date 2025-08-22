@@ -1,11 +1,11 @@
 // routes/historyRoutes.js
 import express from "express";
-import { addHistory, getHistoryByPatient, updateHistory } from "../controller/Historycontroller.js";
+import { addHistory, getHistoryByPatient, getMyHistory, updateHistory } from "../controller/Historycontroller.js";
 
 
 const Historyrouter = express.Router();
 Historyrouter.post("/", addHistory);
 Historyrouter.get("/:patientId", getHistoryByPatient);
-Historyrouter.put("/:id", updateHistory);
+Historyrouter.put("/me", getMyHistory);
 
 export default Historyrouter;

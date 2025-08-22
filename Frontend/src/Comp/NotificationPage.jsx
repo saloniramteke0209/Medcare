@@ -10,7 +10,7 @@ export default function NotificationPage({ doctorId }) {
         // Fetch notifications for logged-in doctor
         const fetchNotifications = async () => {
             try {
-                const res = await axios.get(" https://medtarck.onrender.com/api/notifications");
+                const res = await axios.get("https://medcare-cwzf.onrender.com/api/notifications");
                 setNotifications(res.data);
             } catch (err) {
                 console.error("Error fetching notifications:", err);

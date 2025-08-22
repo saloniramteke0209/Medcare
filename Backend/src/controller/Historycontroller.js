@@ -31,8 +31,8 @@ export const addHistory = async (req, res) => {
             return res.status(403).json({ error: "Only doctors can add history" });
         }
 
-        const doctor = await Doctor.findOne({ email: user.email });
-        if (!doctor) return res.status(404).json({ error: "Doctor not found" });
+        // const doctor = await Doctor.findOne({ email: user.email });
+        // if (!doctor) return res.status(404).json({ error: "Doctor not found" });
 
         const { patient, condition, medication, notes, date } = req.body;
 
@@ -44,8 +44,8 @@ export const addHistory = async (req, res) => {
         if (!patientDoc) return res.status(404).json({ error: "Patient not found" });
 
         const history = await History.create({
-            patient: patientDoc._id,
-            doctor: doctor._id,
+            patient,
+            doctor: user._id,
             condition,
             medication,
             notes,
@@ -65,34 +65,19 @@ export const addHistory = async (req, res) => {
 export const getHistoryByPatient = async (req, res) => {
     try {
         const user = getUserFromReq(req);
-        let { patientId } = req.params;
 
-        // If patientId looks like a name, resolve it
-        let patientDoc = null;
-        if (/^[0-9a-fA-F]{24}$/.test(patientId)) {
-            patientDoc = await Patient.findById(patientId);
-        } else {
-            patientDoc = await Patient.findOne({ name: patientId });
-        }
-        if (!patientDoc) return res.status(404).json({ error: "Patient not found" });
-
-        // patient can only see their own history
-        if (user.role === "patient" && String(user.id) !== String(patientDoc._id)) {
-            return res.status(403).json({ error: "Cannot view another patient’s history" });
+        if (user.role !== "doctor") {
+            return res.status(403).json({ error: "Only doctors can view patient histories" });
         }
 
-        // doctor must exist
-        if (user.role === "doctor") {
-            const doctorExists = await Doctor.findById(user.id);
-            if (!doctorExists) return res.status(404).json({ error: "Doctor not found" });
-        }
+        const { patientId } = req.params;
 
-        const list = await History.find({ patient: patientDoc._id })
+        const histories = await History.find({ patient: patientId })
             .populate("doctor", "name email")
             .populate("patient", "name email")
             .sort({ date: -1 });
 
-        res.json(list);
+        res.json(histories);
     } catch (e) {
         res.status(500).json({ error: e.message });
     }
@@ -101,32 +86,22 @@ export const getHistoryByPatient = async (req, res) => {
 /**
  * Doctor updates an existing history entry
  */
-export const updateHistory = async (req, res) => {
+export const getMyHistory = async (req, res) => {
     try {
         const user = getUserFromReq(req);
-        const { id } = req.params;
 
-        if (user.role !== "doctor") {
-            return res.status(403).json({ error: "Only doctors can update history" });
+        if (user.role !== "patient") {
+            return res.status(403).json({ error: "Only patients can access this route" });
         }
 
-        const history = await History.findById(id);
-        if (!history) return res.status(404).json({ error: "History not found" });
+        const histories = await History.find({ patient: user.id })
+            .populate("doctor", "name email")
+            .populate("patient", "name email")
+            .sort({ date: -1 });
 
-        // only the doctor who created it can edit
-        if (String(history.doctor) !== String(user.id)) {
-            return res.status(403).json({ error: "Not your history record" });
-        }
-
-        const { condition, medication, notes, date } = req.body;
-        if (condition) history.condition = condition;
-        if (medication) history.medication = medication;
-        if (notes) history.notes = notes;
-        if (date) history.date = date;
-
-        await history.save();
-        res.json(history);
+        res.json(histories);
     } catch (e) {
         res.status(500).json({ error: e.message });
     }
 };
+

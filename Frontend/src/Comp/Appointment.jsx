@@ -72,7 +72,7 @@ const Appointment = () => {
             console.log("Sending payload:", payload);
 
             const response = await axios.post(
-                " https://medtarck.onrender.com/api/appointment",
+                "https://medcare-cwzf.onrender.com/api/appointment",
                 payload,
                 { headers: { "Content-Type": "application/json" } }
             );

@@ -29,7 +29,7 @@ const Login = () => {
 
         try {
             const res = await axios.post(
-                ' https://medtarck.onrender.com/api/login',
+                'https://medcare-cwzf.onrender.com/api/login',
                 {
                     name: name.trim(),
                     email: email.trim(),

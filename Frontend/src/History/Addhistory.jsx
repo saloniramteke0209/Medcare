@@ -16,10 +16,9 @@ const AddHistory = () => {
 
     const token = localStorage.getItem("token");
 
-    // 🔹 Fetch all patients once (for dropdown)
     const fetchPatients = async () => {
         try {
-            const res = await axios.get(" https://medtarck.onrender.com/api/doctor/patient", {
+            const res = await axios.get("https://medcare-cwzf.onrender.com/api/doctor/patient", {
                 headers: { Authorization: `Bearer ${token}` },
             });
             setPatients(res.data);
@@ -41,6 +40,14 @@ const AddHistory = () => {
             console.error("Error fetching history:", err.response?.data || err.message);
         }
     };
+
+    useEffect(() => {
+        fetchPatients();
+    }, []);
+
+    useEffect(() => {
+        fetchHistories();
+    }, [selectedPatient]);
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });

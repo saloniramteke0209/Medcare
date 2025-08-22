@@ -9,8 +9,8 @@ const PatientHistory = () => {
     const fetchHistories = async () => {
         try {
             // Assuming backend extracts patient ID from JWT
-            const token = localStorage.getItem("token")
-            const res = await axios.get(" https://medtarck.onrender.com/api/history/me", {
+            // const token = localStorage.getItem("token")
+            const res = await axios.get("https://medcare-cwzf.onrender.com/api/history/me", {
                 headers: { Authorization: `Bearer ${token}` },
             });
             setHistories(res.data);
