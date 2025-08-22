@@ -11,7 +11,7 @@ const Statusappointment = () => {
     useEffect(() => {
         const fetchAppoinment = async () => {
             try {
-                const appoinmentRes = await axios.get(' https://medtarck.onrender.com/api/appointment/allappointment')
+                const appoinmentRes = await axios.get('https://medtarck.onrender.com/api/appointment/allapponiment')
                 setAppointment(appoinmentRes.data)
             }
             catch (error) {

@@ -10,10 +10,10 @@ const Adminside = () => {
 
     const menuItems = [
         { id: "dashboard", label: "Dashboard", icon: <FaTachometerAlt size={20} />, path: "/admindashboard" },
-        { id: "appointments", label: "Appointments", icon: <FaCalendarCheck size={20} />, path: "/getappointment" },
+        { id: "appointments", label: "Appointments", icon: <FaUserInjured size={20} />, path: "/getappointment" },
         { id: "doctors", label: "Doctors", icon: <FaUserMd size={20} />, path: "/viewdoctor" },
         { id: "blog", label: "Blog", icon: <FaNewspaper size={20} />, path: "/blog" },
-        { id: "patients", label: "Patients", icon: <FaUserInjured size={20} />, path: "/appointment" },
+        { id: "patients", label: "Patients", icon: <FaCalendarCheck size={20} />, path: "/appointment" },
         { id: "review", label: "Reviews", icon: <GoPerson size={20} />, path: "/admincontact" },
     ];
 

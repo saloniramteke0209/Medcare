@@ -57,19 +57,6 @@ const Log = async (req, res) => {
 
         let user = await Auth.findOne({ email });
         if (!user) {
-            // const hashedPassword = await bcrypt.hash(password, 10)
-            // user = new Auth({ name, email, role, password: hashedPassword });
-            // await user.save();
-            // console.log("Fixed missing password for user:", user.email)
-
-            // const token = jwt.sign({
-            //     name: user.name,
-            //     email: user.email,
-            //     role: user.role
-            // },
-            //     process.env.SECRET
-            // );
-
             return res.status(404).json({ message: "User not found" })
         }
 
@@ -88,7 +75,7 @@ const Log = async (req, res) => {
             email: user.email,
             role: user.role
         },
-            process.env.SECRET
+            process.env.JWT_SECRET
         );
         return res.status(200).json({
             token,

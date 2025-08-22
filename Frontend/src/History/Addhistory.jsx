@@ -19,7 +19,7 @@ const AddHistory = () => {
     // 🔹 Fetch all patients once (for dropdown)
     const fetchPatients = async () => {
         try {
-            const res = await axios.get(" https://medtarck.onrender.com/api/patie", {
+            const res = await axios.get(" https://medtarck.onrender.com/api/doctor/patient", {
                 headers: { Authorization: `Bearer ${token}` },
             });
             setPatients(res.data);

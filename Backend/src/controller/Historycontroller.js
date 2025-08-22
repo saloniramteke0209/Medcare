@@ -4,7 +4,7 @@ import { Patient } from "../models/Patientmodel.js";
 import { Doctor } from "../models/Docmodels.js";
 import History from "../models/History.js";
 
-const SECRET = "myscert"; // better: process.env.JWT_SECRET
+const JWT_SECRET = process.env.SECRET // better: process.env.JWT_SECRET
 
 /**
  * Helper: Get logged-in user from JWT
@@ -16,7 +16,7 @@ const getUserFromReq = (req) => {
     const token = authHeader.split(" ")[1];
     if (!token) throw new Error("No token provided");
 
-    return jwt.verify(token, SECRET);
+    return jwt.verify(token, process.env.SECRET);
     // returns { id, email, role }
 };
 
