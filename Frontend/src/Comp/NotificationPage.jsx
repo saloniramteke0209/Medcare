@@ -30,7 +30,7 @@ export default function NotificationPage({ doctorId }) {
                 </span>
             </div>
 
-            <div className="space-y-3 max-h-64 overflow-y-auto">
+            <div className="space-y-3 max-h-64 overflow-y-auto flex-1">
                 {notifications.length > 0 ? (
                     notifications.map((note, index) => (
                         <div

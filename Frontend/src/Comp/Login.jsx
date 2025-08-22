@@ -64,6 +64,8 @@ const Login = () => {
         try {
             const res = await axios.post("http://localhost:3000/api/forgot-password", { email })
             setSuccessMsg(res.data.message || "Password reset token sent to email")
+            const resetToken = res.data.resetToken;
+            localStorage.setItem("resetToken", resetToken)
         }
         catch (error) {
             setErrorMsg(error.response?.data?.message || "Error sending reset link")
@@ -79,6 +81,7 @@ const Login = () => {
         setSuccessMsg("");
         setLoading(true);
         try {
+            const token = localStorage.getItem("resetToken")
             const res = await axios.post("http://localhost:3000/api/reset-password", {
                 token,
                 newPassword,
@@ -236,43 +239,7 @@ const Login = () => {
                         </p>
                     </form>
                 )}
-                {mode === "reset" && (
-                    <form onSubmit={handleResetPassword} className="space-y-4">
-                        <label className="block text-gray-700 font-medium">
-                            Reset Token:
-                            <input
-                                type="text"
-                                className="w-full p-2 mt-1 border border-gray-300 rounded"
-                                value={token}
-                                onChange={(e) => setToken(e.target.value)}
-                                required
-                            />
-                        </label>
-                        <label className="block text-gray-700 font-medium">
-                            New Password:
-                            <input
-                                type="password"
-                                className="w-full p-2 mt-1 border border-gray-300 rounded"
-                                value={newPassword}
-                                onChange={(e) => setNewPassword(e.target.value)}
-                                required
-                            />
-                        </label>
-                        <button
-                            type="submit"
-                            disabled={loading}
-                            className="w-full bg-teal-400 text-white py-2 rounded hover:bg-teal-500 disabled:opacity-50"
-                        >
-                            {loading ? "Resetting..." : "Reset Password"}
-                        </button>
-                        <p
-                            className="text-sm text-gray-500 cursor-pointer mt-2 text-center"
-                            onClick={() => setMode("login")}
-                        >
-                            Back to login
-                        </p>
-                    </form>
-                )}
+
             </div>
         </div>
     );

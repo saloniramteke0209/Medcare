@@ -11,6 +11,7 @@ const Doctorside = () => {
     const menuItems = [
         { id: "dashboard", label: "Dashboard", icon: <FaTachometerAlt size={20} />, path: "/doctordashboard" },
         { id: "appointments", label: "Appointments", icon: <FaCalendarCheck size={20} />, path: "/patientappointment" },
+        { id: "addhistory", label: "addhistory", icon: <FaCalendarCheck size={20} />, path: "/addhistory" },
         { id: "review", label: "Reviews", icon: <GoPerson size={20} />, path: "/docontact" },
     ];
 

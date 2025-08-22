@@ -1,109 +1,91 @@
 import React, { useState } from 'react'
 import Doctorside from '../Sidebar/Doctorside.jsx'
-import { Outlet } from 'react-router-dom'
+import AddHistory from '../History/Addhistory.jsx'
 import Doctorchart from '../Doctordashboard/Doctorchart.jsx'
 import Patinet from '../Doctordashboard/Patinet.jsx'
 import Card from '../Comp/Card.jsx'
-import NotificationPage from '../Comp/NotificationPage.jsx'
+
 
 
 const Doctordashboard = () => {
 
     return (
         <>
-            <div className='flex min-h-screen bg-gray-100'>
-
+            <div className="flex">
                 <Doctorside />
 
-                <div className="p-6 bg-teal-50 min-h-screen ">
-                    <div className='flex gap-6'>
-                        <Card />
+                <div className="p-6 bg-teal-50 min-h-screen flex-1">
+                    {/* Top Row - Greeting, Notifications, Surgery, Staffs, Patients */}
+                    <div className="flex gap-6 items-stretch mb-6">
+                        {/* Greeting Card */}
+                        <div className="shadow-lg rounded-xl p-4 flex-1 flex flex-col justify-between">
+                            <Card />
+                        </div>
 
-                        <div className='w-80 shadow-lg rounded-xl p-4 flex items-center justify-between'>
-                            <div>
-                                <h2 className='text-gray-600 text-lg'>Total Surgery</h2>
-                            </div>
-                            <div className='flex space-x-3'>
-                                <img
-                                    src='https://plus.unsplash.com/premium_vector-1682270089736-01da39d8d527?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDEyfHx8ZW58MHx8fHx8'
-                                    className='w-25 h-25  object-cover'
-                                />
-                            </div>
+
+
+                        {/* Total Surgery */}
+                        <div className="shadow-lg rounded-xl p-4 flex-1 flex flex-col justify-between h-48">
+                            <h2 className="text-gray-600 text-lg">Total Surgery</h2>
+                            <img
+                                src="https://plus.unsplash.com/premium_vector-1682270089736-01da39d8d527?w=500&auto=format&fit=crop&q=60"
+                                className="w-24 h-24 object-cover mx-auto"
+                            />
                         </div>
-                        <div className='w-80 shadow-lg rounded-xl p-4 flex items-center justify-between'>
-                            <div>
-                                <h2 className='text-gray-600 text-lg'>Total Staffs</h2>
-                            </div>
-                            <div className='flex space-x-3'>
-                                <img
-                                    src='https://plus.unsplash.com/premium_vector-1714618846503-b44d1d284c6a?q=80&w=1122&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
-                                    className='w-25 h-25  object-cover'
-                                />
-                            </div>
+
+                        {/* Total Staffs */}
+                        <div className="shadow-lg rounded-xl p-4 flex-1 flex flex-col justify-between h-48">
+                            <h2 className="text-gray-600 text-lg">Total Staffs</h2>
+                            <img
+                                src="https://plus.unsplash.com/premium_vector-1714618846503-b44d1d284c6a?q=80&w=1122&auto=format&fit=crop"
+                                className="w-24 h-24 object-cover mx-auto"
+                            />
                         </div>
-                        <div className='w-80 shadow-lg rounded-xl p-4 flex items-center justify-between'>
-                            <div>
-                                <h2 className='text-gray-600 text-lg'>Total Patient</h2>
-                            </div>
-                            <div className='flex space-x-3'>
-                                <img
-                                    src='https://plus.unsplash.com/premium_vector-1682305739336-be469218b857?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDI0fHx8ZW58MHx8fHx8'
-                                    className='w-25 h-25  object-cover'
-                                />
-                            </div>
-                        </div>
-                        <div className='w-80 shadow-lg rounded-xl p-4 flex items-center justify-between'>
-                            <div>
-                                <h2 className='text-gray-600 text-lg'>Total Appointment</h2>
-                            </div>
-                            <div className='flex space-x-3'>
-                                <img
-                                    src='https://plus.unsplash.com/premium_vector-1726062952052-0d81617d9f8c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDd8fHxlbnwwfHx8fHw%3D'
-                                    className='w-25 h-25  object-cover'
-                                />
-                            </div>
+
+                        {/* Total Patients */}
+                        <div className="shadow-lg rounded-xl p-4 flex-1 flex flex-col justify-between h-48">
+                            <h2 className="text-gray-600 text-lg">Total Patient</h2>
+                            <img
+                                src="https://plus.unsplash.com/premium_vector-1682305739336-be469218b857?w=500&auto=format&fit=crop&q=60"
+                                className="w-24 h-24 object-cover mx-auto"
+                            />
                         </div>
                     </div>
 
                     {/* Charts Section */}
-                    <div className="flex-1">
+                    <div className="mb-6">
                         <Doctorchart />
-
                     </div>
-                    <div className='flex gap-6'>
 
-
-                        <div className='w-80 shadow-lg rounded-xl p-4 flex items-center justify-between'>
-                            <div>
-                                <h2 className='text-gray-600 text-lg'>New Patient</h2>
-                            </div>
-                            <div className='flex space-x-3'>
-                                <div className='flex flex-row justify-center items-end rounded-full  p-4 bg-green-200'>25</div>
+                    {/* Patient Stats */}
+                    <div className="flex gap-6 items-stretch mb-6">
+                        <div className="shadow-lg rounded-xl p-4 flex-1 flex flex-col justify-between">
+                            <h2 className="text-gray-600 text-lg">New Patient</h2>
+                            <div className="flex justify-center items-center rounded-full p-4 bg-green-200 text-xl font-bold">
+                                25
                             </div>
                         </div>
-                        <div className='w-80 shadow-lg rounded-xl p-4 flex items-center justify-between'>
-                            <div>
-                                <h2 className='text-gray-600 text-lg'>Old Patient</h2>
-                            </div>
-                            <div className='flex space-x-3'>
-                                <div className='flex flex-row justify-center items-end rounded-full  p-4 bg-red-200'>20</div>
+
+                        <div className="shadow-lg rounded-xl p-4 flex-1 flex flex-col justify-between">
+                            <h2 className="text-gray-600 text-lg">Old Patient</h2>
+                            <div className="flex justify-center items-center rounded-full p-4 bg-red-200 text-xl font-bold">
+                                20
                             </div>
                         </div>
-                        <div className='w-80 shadow-lg rounded-xl p-4 flex items-center justify-between'>
-                            <div>
-                                <h2 className='text-gray-600 text-lg'>Today Patient</h2>
-                            </div>
-                            <div className='flex space-x-3'>
-                                <div className='flex flex-row justify-center items-end rounded-full  p-4 bg-yellow-200'>15</div>
+
+                        <div className="shadow-lg rounded-xl p-4 flex-1 flex flex-col justify-between">
+                            <h2 className="text-gray-600 text-lg">Today Patient</h2>
+                            <div className="flex justify-center items-center rounded-full p-4 bg-yellow-200 text-xl font-bold">
+                                15
                             </div>
                         </div>
                     </div>
 
-                    <div className="flex-1">
+                    {/* Department */}
+                    <div className="shadow-lg rounded-xl p-4 flex flex-col justify-between">
                         <Patinet />
                     </div>
                 </div>
-
             </div>
         </>
     )

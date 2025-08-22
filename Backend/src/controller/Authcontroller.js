@@ -22,6 +22,8 @@ const Log = async (req, res) => {
             roleuser = await Admin.findOne({ email })
             if (!roleuser) {
                 roleuser = await Admin.create({ name, email, role: 'admin' });
+                const hashedPassword = await bcrypt.hash(password, 10);
+                await Auth.create({ name, email, role: 'admin', password: hashedPassword });
             }
         }
         else if (role.toLowerCase() === 'doctor') {
@@ -31,6 +33,8 @@ const Log = async (req, res) => {
                 //     console.log("Doctor Data:", roleuser);
             }
             roleuser = await Doctor.create({ name, email, role: 'doctor' })
+            const hashedPassword = await bcrypt.hash(password, 10);
+            await Auth.create({ name, email, role: 'doctor', password: hashedPassword });
             await Notification.create({
                 message: `Doctor logged in: ${roleuser.name}`,
                 type: "doctor"
@@ -41,6 +45,8 @@ const Log = async (req, res) => {
             roleuser = await Patient.findOne({ email })
             if (!roleuser) {
                 roleuser = await Patient.create({ name, email, role: 'patient' })
+                const hashedPassword = await bcrypt.hash(password, 10);
+                await Auth.create({ name, email, role: 'patient', password: hashedPassword });
             }
         }
         if (!roleuser) {
@@ -51,18 +57,20 @@ const Log = async (req, res) => {
 
         let user = await Auth.findOne({ email });
         if (!user) {
-            const hashedPassword = await bcrypt.hash(password, 10)
-            user = new Auth({ name, email, role, password: hashedPassword });
+            // const hashedPassword = await bcrypt.hash(password, 10)
+            // user = new Auth({ name, email, role, password: hashedPassword });
+            // await user.save();
+            // console.log("Fixed missing password for user:", user.email)
 
-            const token = jwt.sign({
-                name: user.name,
-                email: user.email,
-                role: user.role
-            },
-                process.env.SECRET
-            );
-            await user.save();
-            return res.status(200).json({ message: "User registered successfully", token, user })
+            // const token = jwt.sign({
+            //     name: user.name,
+            //     email: user.email,
+            //     role: user.role
+            // },
+            //     process.env.SECRET
+            // );
+
+            return res.status(404).json({ message: "User not found" })
         }
 
         if (!user.password) {
@@ -71,23 +79,27 @@ const Log = async (req, res) => {
 
         const Match = await bcrypt.compare(password, user.password);
         if (!Match) {
-            return res.status(401).json({ message: "Invaild" })
+            user.password = await bcrypt.hash(password, 10)
+            await user.save();
+            return res.status(200).json({ message: "password reset and logged in", user })
         }
-        // const token = jwt.sign({
-        //     name: user.name,
-        //     email: user.email,
-        //     role: user.role
-        // },
-        //     process.env.SECRET
-        // );
+        const token = jwt.sign({
+            name: user.name,
+            email: user.email,
+            role: user.role
+        },
+            process.env.SECRET
+        );
         return res.status(200).json({
             token,
             role: user.role,
+            name: user.name,
             user
         });
     }
     catch (error) {
         console.log(error)
+        return res.status(500).json({ message: "Server error", error: error.message })
     }
 }
 export default Log;

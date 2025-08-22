@@ -24,7 +24,7 @@ const authSchema = new mongoose.Schema({
         default: null
     },
     resetTokenExpiry: {
-        type: String,
+        type: Date,
         default: null
     },
 }, { timestamps: true })
