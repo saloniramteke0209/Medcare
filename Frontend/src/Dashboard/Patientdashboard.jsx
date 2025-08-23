@@ -81,7 +81,27 @@ const Patientdashboard = () => {
                         </div>
                     </div>
                 </div>
+                <div className="shadow-lg rounded-xl p-6 bg-white mb-6">
+                    <h2 className="text-2xl font-semibold text-gray-700 mb-4">Facilities We Have</h2>
+                    <ul className="grid grid-cols-2 gap-3 text-gray-700">
+                        <li>✅ 24/7 Emergency Care</li>
+                        <li>✅ Advanced Operation Theatres</li>
+                        <li>✅ Diagnostic & Imaging Services</li>
+                        <li>✅ Pharmacy & Laboratory</li>
+                        <li>✅ Specialist Consultations</li>
+                    </ul>
+                </div>
 
+                {/* Awards Section */}
+                <div className="shadow-lg rounded-xl p-6 bg-white mb-6">
+                    <h2 className="text-2xl font-semibold text-gray-700 mb-4">Awards We Got</h2>
+                    <ul className="list-disc pl-6 text-gray-700 space-y-2">
+                        <li>Best Multi-speciality Hospital 2024</li>
+                        <li>National Healthcare Excellence Award</li>
+                        <li>Patient Care & Safety Recognition</li>
+                        <li>Top Rated Hospital in India</li>
+                    </ul>
+                </div>
 
             </div>
         </div>

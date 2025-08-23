@@ -32,7 +32,7 @@ const AddHistory = () => {
         if (!selectedPatient) return;
         try {
             const res = await axios.get(
-                ` https://medtarck.onrender.com/api/history/${selectedPatient}`,
+                `https://medtarck.onrender.com/api/history/${selectedPatient}`,
                 { headers: { Authorization: `Bearer ${token}` } }
             );
             setHistories(res.data);
@@ -55,7 +55,7 @@ const AddHistory = () => {
         }
         try {
             const res = await axios.post(
-                " https://medtarck.onrender.com/api/history",
+                "https://medtarck.onrender.com/api/history",
                 {
                     patientId: selectedPatient,
                     condition: formData.condition,

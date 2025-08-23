@@ -11,11 +11,15 @@ const JWT_SECRET = process.env.SECRET // better: process.env.JWT_SECRET
  */
 const getUserFromReq = (req) => {
     const authHeader = req.headers.authorization;
-    if (!authHeader) throw new Error("No token provided");
+
+    if (!authHeader || !authHeader.startsWith("Bearer ")) {
+        return res.status(401).json({ error: "No token provided" });
+    }
 
     const token = authHeader.split(" ")[1];
     try {
         const decoded = jwt.verify(token, process.env.SECRET);
+        console.log("Decoded token", decoded)
         req.user = decoded; // now req.user = { id, email, role }
         next();
     } catch (err) {
@@ -27,6 +31,7 @@ const getUserFromReq = (req) => {
  * Doctor adds a new medical history entry for a patient
  */
 export const addHistory = async (req, res) => {
+    console.log("req.user in addHistory", req.user)
     try {
         if (req.user.role !== "doctor") {
             return res.status(403).json({ error: "Only doctors can add history" });
