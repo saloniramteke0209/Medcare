@@ -22,9 +22,9 @@ const Doctorside = () => {
     };
 
     return (
-        <div className="w-16 bg-white h-screen flex flex-col items-center py-6 shadow-lg">
+        <div className="w-16 bg-white min-h-screen flex flex-col items-center py-6 shadow-lg">
             {/* Logo */}
-            <div className="mb-8 text-lg font-extrabold text-teal-600">MEDTRACK</div>
+            <div className="mb-8 text-lg font-extrabold text-teal-600">MEDCARE</div>
 
             {/* Menu Items */}
             {menuItems.map((item) => {

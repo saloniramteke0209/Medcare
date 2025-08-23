@@ -42,7 +42,14 @@ const Login = () => {
             if (res.data.token) {
                 localStorage.setItem('token', res.data.token);
                 localStorage.setItem('role', res.data.role);
-                localStorage.setItem('name', res.data.name);
+                // localStorage.setItem('name', res.data.name);
+                if (res.data.role === "doctor") {
+                    localStorage.setItem('name', res.data.doctorName || res.data.name);
+                } else if (res.data.role === "admin") {
+                    localStorage.setItem('name', res.data.adminName || res.data.name);
+                } else if (res.data.role === "patient") {
+                    localStorage.setItem('name', res.data.patientName || res.data.name);
+                }
 
                 navigate(roleRoutes[res.data.role] || '/');
             } else {
